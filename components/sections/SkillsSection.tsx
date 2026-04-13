@@ -10,6 +10,7 @@ import { IoLogoReact } from 'react-icons/io5';
 import { TbApi, TbBrandAdobeIllustrator, TbBrandAdobePhotoshop, TbBrandAdobeXd, TbFrame } from 'react-icons/tb';
 import { PiFlowArrowBold } from 'react-icons/pi';
 import { RiDashboardHorizontalLine } from 'react-icons/ri';
+import { IconType } from 'react-icons/lib';
 
 
 
@@ -18,67 +19,67 @@ const FRONTEND_SKILLS = [
   {
     name: 'HTML',
     brandColor: '#e34c26',
-    icon:<FaHtml5 />
+    icon:FaHtml5 
 
   },
   {
     name: 'CSS',
     brandColor: '#264de4',
-    icon:<FaCss />
+    icon:FaCss 
 
 
   },
   {
     name: 'JavaScript',
     brandColor: '#f7df1e',
-    icon: <FaJs />
+    icon: FaJs 
   },
   {
     name: 'Bootstrap',
     brandColor: '#7952b3',
-    icon: <FaBootstrap />
+    icon: FaBootstrap 
   },
   {
     name: 'Tailwind',
     brandColor: '#06b6d4',
-    icon: <SiTailwindcss />
+    icon: SiTailwindcss 
 
   },
   {
     name: 'SASS',
     brandColor: '#cc6699',
-icon: <BsFiletypeSass />  },
+icon: BsFiletypeSass   },
   {
     name: 'TypeScript',
     brandColor: '#3178c6',
-icon: <BsTypescript />
+icon: BsTypescript 
   },
   {
     name: 'Git',
     brandColor: '#f05032',
-icon: <FaGitAlt />
+icon: FaGitAlt 
   },
   {
     name: 'GitHub',
     brandColor: '#f05032',
-icon: <FaGithub />
+icon: FaGithub 
     
   },
   {
     name: 'Next.js',
     brandColor: '#000000',
-icon: <SiNextdotjs />
+icon: SiNextdotjs 
   },
   {
     name: 'API Integration',
     brandColor: '#a14c4c',
-icon: <TbApi />
+icon: TbApi 
 
   },
   {
     name: 'React',
     brandColor: '#61dafb',
-icon: <IoLogoReact />
+icon: IoLogoReact 
   },
 ]
 
@@ -86,49 +87,49 @@ const UIUX_SKILLS = [
   {
     name: 'Figma',
     brandColor: '#f24e1e',
-icon: <FaFigma />
+icon: FaFigma
    },
   {
     name: 'Adobe XD',
     brandColor: '#ff61f6',
-icon: <TbBrandAdobeXd />
+icon: TbBrandAdobeXd 
    },
   {
     name: 'Illustrator',
     brandColor: '#ff9a00',
-icon: <TbBrandAdobeIllustrator />
+icon: TbBrandAdobeIllustrator
    },
   {
     name: 'Photoshop',
     brandColor: '#31a8ff',
-icon: <TbBrandAdobePhotoshop />
+icon: TbBrandAdobePhotoshop 
   },
   {
     name: 'Wireframing',
     brandColor: '#6366f1',
-icon: <TbFrame />
+icon: TbFrame
 
   },
   {
     name: 'Prototyping',
     brandColor: '#0acf83',
-icon: <PiFlowArrowBold />  },
+icon: PiFlowArrowBold   },
 {
     name: 'Dashboarding',
     brandColor: '#079c63',
-icon: <RiDashboardHorizontalLine />
+icon: RiDashboardHorizontalLine 
   },
 ]
 
 interface SkillCardProps {
   name: string
   brandColor: string
-  svg: React.ReactNode
+   icon: IconType
   delay: number
   isVisible: boolean
 }
 
-function SkillCard({ name, brandColor, icon, delay, isVisible }: SkillCardProps) {
+function SkillCard({ name, brandColor, icon:Icon, delay, isVisible }: SkillCardProps) {
   const [hovered, setHovered] = useState(false)
 
   return (
@@ -161,7 +162,7 @@ function SkillCard({ name, brandColor, icon, delay, isVisible }: SkillCardProps)
           fontSize: hovered? '26px' : '22px',
         }}
       >
-        {icon}
+        <Icon />
       </div>
 
       {/* Label */}
