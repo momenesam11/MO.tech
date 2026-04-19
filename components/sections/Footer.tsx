@@ -1,4 +1,6 @@
 'use client'
+import { FaGithub, FaLinkedinIn, FaBehance, FaWhatsapp } from 'react-icons/fa6'
+import { HiEnvelope, HiMapPin } from 'react-icons/hi2'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -28,9 +30,9 @@ export default function Footer() {
             {/* Social */}
             <div className="flex gap-3 mt-1">
               {[
-                { href: 'https://github.com/momenesam11', label: 'GitHub' },
-                { href: 'https://www.behance.net/momenesam', label: 'Behance' },
-                { href: '#', label: 'LinkedIn' },
+                { href: 'https://github.com/momenesam11', label: 'GitHub', icon: <FaGithub /> },
+                { href: 'https://www.behance.net/momenesam', label: 'Behance', icon: <FaBehance /> },
+                { href: 'https://www.linkedin.com/in/momenesam/', label: 'LinkedIn', icon: <FaLinkedinIn /> },
               ].map(s => (
                 <a
                   key={s.label}
@@ -38,10 +40,10 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/40 transition-all duration-300 text-xs font-bold"
+                  className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/40 transition-all duration-300 text-lg"
                   data-hover="true"
                 >
-                  {s.label[0]}
+                  {s.icon}
                 </a>
               ))}
             </div>
@@ -76,16 +78,16 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <h4 className="text-sm font-bold uppercase tracking-widest text-gray-300">Contact</h4>
             <div className="flex flex-col gap-3">
-              <a href="mailto:momen@email.com" className="text-gray-400 text-sm hover:text-primary transition-colors flex items-center gap-2" data-hover="true">
-                <span className="text-primary">✉</span>
-                momen@email.com
+              <a href="mailto:moment.esam15@gmail.com" className="text-gray-400 text-sm hover:text-primary transition-colors flex items-center gap-2" data-hover="true">
+                <HiEnvelope className="text-primary text-base" />
+                moment.esam15@gmail.com
               </a>
-              <a href="https://wa.me/201000000000" target="_blank" rel="noopener noreferrer" className="text-gray-400 text-sm hover:text-primary transition-colors flex items-center gap-2" data-hover="true">
-                <span className="text-primary">📱</span>
-                +20 100 000 0000
+              <a href="https://wa.me/201021179969" target="_blank" rel="noopener noreferrer" className="text-gray-400 text-sm hover:text-primary transition-colors flex items-center gap-2" data-hover="true">
+                <FaWhatsapp className="text-primary text-base" />
+                +201021179969
               </a>
               <span className="text-gray-400 text-sm flex items-center gap-2">
-                <span className="text-primary">📍</span>
+                <HiMapPin className="text-primary text-base" />
                 Cairo, Egypt
               </span>
             </div>

@@ -1,12 +1,13 @@
 'use client'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { useEffect, useState, useRef } from 'react'
+import { HiOutlineRocketLaunch, HiOutlineBolt, HiOutlineBriefcase, HiOutlineSparkles } from 'react-icons/hi2'
 
 const STATS = [
-  { value: 15, label: 'Projects Completed', suffix: '+', icon: '🚀' },
-  { value: 3, label: 'Years Experience', suffix: '+', icon: '⚡' },
-  { value: 10, label: 'Happy Clients', suffix: '+', icon: '💼' },
-  { value: 100, label: 'Satisfaction Rate', suffix: '%', icon: '✦' },
+  { value: 15, label: 'Projects Completed', suffix: '+', icon: <HiOutlineRocketLaunch /> },
+  { value: 3, label: 'Years Experience', suffix: '+', icon: <HiOutlineBolt /> },
+  { value: 10, label: 'Happy Clients', suffix: '+', icon: <HiOutlineBriefcase /> },
+  { value: 100, label: 'Satisfaction Rate', suffix: '%', icon: <HiOutlineSparkles /> },
 ]
 
 function AnimatedCounter({ value, suffix, isVisible }: { value: number; suffix: string; isVisible: boolean }) {
@@ -57,7 +58,7 @@ export default function NumbersSection() {
               style={{ transitionDelay: `${i * 120}ms` }}
               data-hover="true"
             >
-              <span className="text-2xl mb-1">{stat.icon}</span>
+              <div className="text-3xl text-primary mb-1">{stat.icon}</div>
               <AnimatedCounter value={stat.value} suffix={stat.suffix} isVisible={isVisible} />
               <p className="text-[#626262] dark:text-[#888] text-sm leading-tight mt-1">{stat.label}</p>
             </div>

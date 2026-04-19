@@ -61,7 +61,7 @@ const translations: Record<string, Record<Lang, string>> = {
   'about.p1':      { en: "I'm a passionate UI/UX Designer and Frontend Developer based in Cairo, Egypt. I specialize in creating digital experiences that are not only visually compelling but also highly functional and user-centered.", ar: 'أنا مصمم UI/UX ومطور واجهات أمامية شغوف مقيم في القاهرة، مصر. أتخصص في إنشاء تجارب رقمية جذابة بصريًا وعملية ومتمحورة حول المستخدم.' },
   'about.p2':      { en: 'With expertise spanning from wireframing and prototyping in Figma to building production-ready interfaces with Next.js and Tailwind CSS, I bridge the gap between design and development.', ar: 'بخبرتي من الـ wireframing والـ prototyping في Figma إلى بناء واجهات جاهزة للإنتاج بـ Next.js وTailwind، أجسّد الفجوة بين التصميم والتطوير.' },
   'about.location':  { en: 'Cairo, Egypt 🇪🇬', ar: 'القاهرة، مصر 🇪🇬' },
-  'about.email':     { en: 'momen@email.com', ar: 'momen@email.com' },
+  'about.email':     { en: 'moment.esam15@gmail.com', ar: 'moment.esam15@gmail.com' },
   'about.freelance': { en: 'Available ✅', ar: 'متاح ✅' },
   'about.languages': { en: 'Arabic, English', ar: 'العربية، الإنجليزية' },
   'about.loc.label': { en: 'Location',   ar: 'الموقع' },
@@ -80,7 +80,7 @@ const translations: Record<string, Record<Lang, string>> = {
   'contact.subject':  { en: 'Subject',             ar: 'الموضوع' },
   'contact.message':  { en: 'Message',             ar: 'الرسالة' },
   'contact.ph.name':  { en: 'Momen Esam',         ar: 'محمد أحمد' },
-  'contact.ph.email': { en: 'momen@email.com',    ar: 'email@example.com' },
+  'contact.ph.email': { en: 'moment.esam15@gmail.com',    ar: 'moment.esam15@gmail.com' },
   'contact.ph.sub':   { en: 'Project Inquiry',    ar: 'استفسار عن مشروع' },
   'contact.ph.msg':   { en: 'Tell me about your project...', ar: 'أخبرني عن مشروعك...' },
   'contact.send':     { en: 'Send Message',        ar: 'إرسال الرسالة' },
@@ -110,15 +110,28 @@ const I18nContext = createContext<I18nContextType>({
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Lang>('en')
   const [darkMode, setDarkMode] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
-  // Load saved preference on mount
   useEffect(() => {
-    const saved = localStorage.getItem('darkMode')
-    if (saved === 'true') {
+    setMounted(true)
+    const savedDark = localStorage.getItem('darkMode')
+    if (savedDark === 'true') {
       setDarkMode(true)
       document.documentElement.classList.add('dark')
     }
+    
+    const savedLang = localStorage.getItem('lang') as Lang
+    if (savedLang) {
+      setLang(savedLang)
+    }
   }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
+    document.documentElement.lang = lang
+    localStorage.setItem('lang', lang)
+  }, [lang, mounted])
 
   const toggleDarkMode = () => {
     setDarkMode(prev => {
@@ -138,11 +151,12 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     return translations[key]?.[lang] ?? key
   }
 
+  // To prevent hydration mismatch, we don't render anything that depends on client-only state 
+  // during the first render. However, since lang defaults to 'en' (same as server), 
+  // it's generally safe. The main issue is often attributes or complex nesting.
   return (
     <I18nContext.Provider value={{ lang, setLang, t, dir: lang === 'ar' ? 'rtl' : 'ltr', darkMode, toggleDarkMode }}>
-      <div dir={lang === 'ar' ? 'rtl' : 'ltr'} lang={lang}>
-        {children}
-      </div>
+      {children}
     </I18nContext.Provider>
   )
 }

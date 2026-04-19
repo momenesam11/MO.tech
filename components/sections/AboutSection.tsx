@@ -70,7 +70,7 @@ export default function AboutSection() {
             >
               {[
                 { label: 'Location', value: 'Cairo, Egypt 🇪🇬' },
-                { label: 'Email', value: 'momen@email.com' },
+                { label: 'Email', value: 'moment.esam15@gmail.com' },
                 { label: 'Freelance', value: 'Available ✅' },
                 { label: 'Languages', value: 'Arabic, English' },
               ].map(item => (
