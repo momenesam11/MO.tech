@@ -41,8 +41,11 @@
   --shadow-card: 0px 0px 2px 0px rgba(0,0,0,0.8);
 }
 
-* {
-  cursor: none !important;
+/* Only disable cursor on desktop with mouse */
+@media (min-width: 1024px) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
 
 html {

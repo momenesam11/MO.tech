@@ -84,6 +84,14 @@ export default function CustomCursor() {
         }}
       />
       <style>{`
+        #game-cursor, #game-dot {
+          display: none;
+        }
+        @media (min-width: 1024px) and (pointer: fine) {
+          #game-cursor, #game-dot {
+            display: block;
+          }
+        }
         #game-cursor.cursor--hover {
           width: 44px !important;
           height: 44px !important;
