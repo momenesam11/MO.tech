@@ -5,7 +5,7 @@ export default function AboutSection() {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.2 })
 
   return (
-    <section id="about" className="py-20 bg-[#fafafa]">
+    <section id="about" className="py-20 bg-[#fafafa] dark:bg-[#161616] transition-colors duration-300">
       <div ref={ref} className="max-w-7xl mx-auto px-10 md:px-20">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
@@ -18,7 +18,7 @@ export default function AboutSection() {
               <div className="absolute -top-4 -left-4 w-20 h-20 border-2 border-primary/20 rounded-lg" />
               <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-primary/10 rounded-lg" />
 
-              <div className="w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 relative z-10">
+              <div className="w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 relative z-10">
                 <img
                   src="https://www.figma.com/api/mcp/asset/0c1fb48f-dbc5-4b54-8b04-ef296cf530c5"
                   alt="About Momen Esam"
@@ -27,9 +27,9 @@ export default function AboutSection() {
               </div>
 
               {/* Experience badge */}
-              <div className="absolute -right-6 top-1/2 -translate-y-1/2 z-20 bg-white rounded-2xl shadow-lg p-4 border border-[#f3eeee] text-center">
+              <div className="absolute -right-6 top-1/2 -translate-y-1/2 z-20 bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-lg dark:shadow-black/50 p-4 border border-[#f3eeee] dark:border-white/10 text-center">
                 <p className="text-3xl font-bold text-primary" style={{ fontFamily: 'Istok Web' }}>3+</p>
-                <p className="text-xs text-muted leading-tight mt-0.5">Years<br/>Experience</p>
+                <p className="text-xs text-[#8a7d7d] dark:text-[#666] leading-tight mt-0.5">Years<br/>Experience</p>
               </div>
             </div>
           </div>
@@ -43,22 +43,22 @@ export default function AboutSection() {
                 About Me
               </span>
               <div className="relative inline-block mt-4">
-                <h2 className="text-3xl md:text-4xl font-bold text-[#1e1e1e]" style={{ fontFamily: 'Istok Web' }}>
+                <h2 className="text-3xl md:text-4xl font-bold text-[#1e1e1e] dark:text-[#f0f0f0]" style={{ fontFamily: 'Istok Web' }}>
                   Momen Esam
                 </h2>
                 <div className="absolute -top-1 -right-3 w-2 h-2 rounded-full bg-primary" />
               </div>
-              <p className="text-primary text-base mt-1">UI/UX Designer & Frontend Developer</p>
+              <p className="text-primary text-base mt-1">UI/UX Designer &amp; Frontend Developer</p>
             </div>
 
             <div
               className={`flex flex-col gap-4 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
               style={{ transitionDelay: '0.15s' }}
             >
-              <p className="text-[#626262] text-base leading-relaxed">
+              <p className="text-[#626262] dark:text-[#a0a0a0] text-base leading-relaxed">
                 I&apos;m a passionate UI/UX Designer and Frontend Developer based in Cairo, Egypt. I specialize in creating digital experiences that are not only visually compelling but also highly functional and user-centered.
               </p>
-              <p className="text-[#626262] text-base leading-relaxed">
+              <p className="text-[#626262] dark:text-[#a0a0a0] text-base leading-relaxed">
                 With expertise spanning from wireframing and prototyping in Figma to building production-ready interfaces with Next.js and Tailwind CSS, I bridge the gap between design and development seamlessly.
               </p>
             </div>
@@ -74,9 +74,9 @@ export default function AboutSection() {
                 { label: 'Freelance', value: 'Available ✅' },
                 { label: 'Languages', value: 'Arabic, English' },
               ].map(item => (
-                <div key={item.label} className="bg-white rounded-xl p-4 border border-[#f3eeee] hover:border-primary/30 transition-colors">
-                  <p className="text-xs text-muted uppercase tracking-wider mb-1">{item.label}</p>
-                  <p className="text-sm font-medium text-[#2e2b2b]">{item.value}</p>
+                <div key={item.label} className="bg-white dark:bg-[#1a1a1a] rounded-xl p-4 border border-[#f3eeee] dark:border-white/8 hover:border-primary/30 transition-colors">
+                  <p className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider mb-1">{item.label}</p>
+                  <p className="text-sm font-medium text-[#2e2b2b] dark:text-[#d0d0d0]">{item.value}</p>
                 </div>
               ))}
             </div>
@@ -96,7 +96,7 @@ export default function AboutSection() {
               <a
                 href="/cv.pdf"
                 download
-                className="border-2 border-[#1e1e1e] text-[#1e1e1e] font-bold px-6 py-3 rounded-full text-sm hover:bg-[#1e1e1e] hover:text-white transition-all duration-300"
+                className="border-2 border-[#1e1e1e] dark:border-white/30 text-[#1e1e1e] dark:text-[#d0d0d0] font-bold px-6 py-3 rounded-full text-sm hover:bg-[#1e1e1e] dark:hover:bg-white/10 hover:text-white transition-all duration-300"
                 data-hover="true"
               >
                 Download CV

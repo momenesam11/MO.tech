@@ -45,13 +45,13 @@ export default function NumbersSection() {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.3 })
 
   return (
-    <section className="py-16 bg-[#fafafa] border-y border-[#f3eeee]">
+    <section className="py-16 bg-[#fafafa] dark:bg-[#161616] border-y border-[#f3eeee] dark:border-white/5 transition-colors duration-300">
       <div ref={ref} className="max-w-7xl mx-auto px-10 md:px-20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {STATS.map((stat, i) => (
             <div
               key={stat.label}
-              className={`number-card bg-white rounded-2xl p-6 flex flex-col items-center gap-2 text-center shadow-sm border border-[#f3eeee] hover:border-primary/30 transition-all duration-700 ${
+              className={`number-card bg-white dark:bg-[#1a1a1a] rounded-2xl p-6 flex flex-col items-center gap-2 text-center shadow-sm dark:shadow-black/30 border border-[#f3eeee] dark:border-white/8 hover:border-primary/30 transition-all duration-700 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ transitionDelay: `${i * 120}ms` }}
@@ -59,7 +59,7 @@ export default function NumbersSection() {
             >
               <span className="text-2xl mb-1">{stat.icon}</span>
               <AnimatedCounter value={stat.value} suffix={stat.suffix} isVisible={isVisible} />
-              <p className="text-[#626262] text-sm leading-tight mt-1">{stat.label}</p>
+              <p className="text-[#626262] dark:text-[#888] text-sm leading-tight mt-1">{stat.label}</p>
             </div>
           ))}
         </div>

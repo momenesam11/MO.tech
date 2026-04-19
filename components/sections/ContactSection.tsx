@@ -15,7 +15,6 @@ export default function ContactSection() {
     e.preventDefault()
     if (!form.name || !form.email || !form.message) return
     setStatus('sending')
-    // Simulate send — wire up to your API/EmailJS/Formspree here
     await new Promise(r => setTimeout(r, 1500))
     setStatus('sent')
     setForm({ name: '', email: '', subject: '', message: '' })
@@ -63,7 +62,7 @@ export default function ContactSection() {
   ]
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-20 bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
       <div ref={ref} className="max-w-7xl mx-auto px-10 md:px-20">
 
         {/* Header */}
@@ -74,12 +73,12 @@ export default function ContactSection() {
             Get In Touch
           </span>
           <div className="relative">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1e1e1e] text-center" style={{ fontFamily: 'Istok Web' }}>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1e1e1e] dark:text-[#f0f0f0] text-center" style={{ fontFamily: 'Istok Web' }}>
               Contact Me
             </h2>
             <div className="absolute -top-1 -right-3 w-2 h-2 rounded-full bg-primary" />
           </div>
-          <p className="text-muted text-center max-w-md text-base">
+          <p className="text-[#8a7d7d] dark:text-[#888] text-center max-w-md text-base">
             Have a project in mind? Let&apos;s talk and bring your ideas to life.
           </p>
         </div>
@@ -94,7 +93,7 @@ export default function ContactSection() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex items-center gap-4 p-5 rounded-2xl border border-[#f3eeee] hover:border-primary/30 hover:-translate-y-1 transition-all duration-500 bg-[#fafafa] group ${
+                className={`flex items-center gap-4 p-5 rounded-2xl border border-[#f3eeee] dark:border-white/8 hover:border-primary/30 dark:hover:border-primary/30 hover:-translate-y-1 transition-all duration-500 bg-[#fafafa] dark:bg-[#1a1a1a] group ${
                   isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
                 }`}
                 style={{ transitionDelay: `${0.1 + i * 0.12}s` }}
@@ -107,18 +106,18 @@ export default function ContactSection() {
                   {item.icon}
                 </div>
                 <div>
-                  <p className="text-xs text-muted uppercase tracking-wider mb-0.5">{item.label}</p>
-                  <p className="text-sm font-medium text-[#2e2b2b]">{item.value}</p>
+                  <p className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider mb-0.5">{item.label}</p>
+                  <p className="text-sm font-medium text-[#2e2b2b] dark:text-[#d0d0d0]">{item.value}</p>
                 </div>
               </a>
             ))}
 
             {/* Social links */}
             <div
-              className={`mt-2 p-5 rounded-2xl border border-[#f3eeee] bg-[#fafafa] transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
+              className={`mt-2 p-5 rounded-2xl border border-[#f3eeee] dark:border-white/8 bg-[#fafafa] dark:bg-[#1a1a1a] transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
               style={{ transitionDelay: '0.46s' }}
             >
-              <p className="text-xs text-muted uppercase tracking-wider mb-4">Follow Me</p>
+              <p className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider mb-4">Follow Me</p>
               <div className="flex gap-3">
                 {[
                   { href: 'https://github.com/momenesam11', label: 'GitHub', icon: (
@@ -137,7 +136,7 @@ export default function ContactSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="w-10 h-10 rounded-xl border border-[#f3eeee] flex items-center justify-center text-muted hover:text-primary hover:border-primary/30 hover:scale-110 transition-all duration-300"
+                    className="w-10 h-10 rounded-xl border border-[#f3eeee] dark:border-white/10 flex items-center justify-center text-[#8a7d7d] dark:text-[#666] hover:text-primary hover:border-primary/30 hover:scale-110 transition-all duration-300"
                     data-hover="true"
                   >
                     {social.icon}
@@ -152,58 +151,58 @@ export default function ContactSection() {
             className={`lg:col-span-3 transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
             style={{ transitionDelay: '0.2s' }}
           >
-            <div className="bg-[#fafafa] rounded-2xl border border-[#f3eeee] p-8">
+            <div className="bg-[#fafafa] dark:bg-[#1a1a1a] rounded-2xl border border-[#f3eeee] dark:border-white/8 p-8">
               <div className="flex flex-col gap-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {/* Name */}
                   <div className="flex flex-col gap-2">
-                    <label className="text-xs text-muted uppercase tracking-wider">Your Name</label>
+                    <label className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider">Your Name</label>
                     <input
                       type="text"
                       name="name"
                       value={form.name}
                       onChange={handleChange}
                       placeholder="Momen Esam"
-                      className="form-input bg-white border-0 border-b-2 border-gray-200 focus:border-primary px-0 py-2.5 text-sm text-[#2e2b2b] placeholder-gray-300 outline-none w-full transition-colors duration-300"
+                      className="form-input bg-transparent border-0 border-b-2 border-gray-200 dark:border-white/10 focus:border-primary px-0 py-2.5 text-sm text-[#2e2b2b] dark:text-[#d0d0d0] placeholder-gray-300 dark:placeholder-[#444] outline-none w-full transition-colors duration-300"
                     />
                   </div>
                   {/* Email */}
                   <div className="flex flex-col gap-2">
-                    <label className="text-xs text-muted uppercase tracking-wider">Email Address</label>
+                    <label className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider">Email Address</label>
                     <input
                       type="email"
                       name="email"
                       value={form.email}
                       onChange={handleChange}
                       placeholder="momen@email.com"
-                      className="form-input bg-white border-0 border-b-2 border-gray-200 focus:border-primary px-0 py-2.5 text-sm text-[#2e2b2b] placeholder-gray-300 outline-none w-full transition-colors duration-300"
+                      className="form-input bg-transparent border-0 border-b-2 border-gray-200 dark:border-white/10 focus:border-primary px-0 py-2.5 text-sm text-[#2e2b2b] dark:text-[#d0d0d0] placeholder-gray-300 dark:placeholder-[#444] outline-none w-full transition-colors duration-300"
                     />
                   </div>
                 </div>
 
                 {/* Subject */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs text-muted uppercase tracking-wider">Subject</label>
+                  <label className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider">Subject</label>
                   <input
                     type="text"
                     name="subject"
                     value={form.subject}
                     onChange={handleChange}
                     placeholder="Project Inquiry"
-                    className="form-input bg-white border-0 border-b-2 border-gray-200 focus:border-primary px-0 py-2.5 text-sm text-[#2e2b2b] placeholder-gray-300 outline-none w-full transition-colors duration-300"
+                    className="form-input bg-transparent border-0 border-b-2 border-gray-200 dark:border-white/10 focus:border-primary px-0 py-2.5 text-sm text-[#2e2b2b] dark:text-[#d0d0d0] placeholder-gray-300 dark:placeholder-[#444] outline-none w-full transition-colors duration-300"
                   />
                 </div>
 
                 {/* Message */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs text-muted uppercase tracking-wider">Message</label>
+                  <label className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider">Message</label>
                   <textarea
                     name="message"
                     value={form.message}
                     onChange={handleChange}
                     placeholder="Tell me about your project..."
                     rows={5}
-                    className="form-input bg-white border-0 border-b-2 border-gray-200 focus:border-primary px-0 py-2.5 text-sm text-[#2e2b2b] placeholder-gray-300 outline-none w-full resize-none transition-colors duration-300"
+                    className="form-input bg-transparent border-0 border-b-2 border-gray-200 dark:border-white/10 focus:border-primary px-0 py-2.5 text-sm text-[#2e2b2b] dark:text-[#d0d0d0] placeholder-gray-300 dark:placeholder-[#444] outline-none w-full resize-none transition-colors duration-300"
                   />
                 </div>
 
@@ -238,11 +237,7 @@ export default function ContactSection() {
                       </svg>
                     </>
                   )}
-                  {status === 'sent' && (
-                    <>
-                      Message Sent! ✓
-                    </>
-                  )}
+                  {status === 'sent' && <>Message Sent! ✓</>}
                 </button>
               </div>
             </div>

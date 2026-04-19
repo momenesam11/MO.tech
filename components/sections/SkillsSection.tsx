@@ -12,125 +12,42 @@ import { PiFlowArrowBold } from 'react-icons/pi';
 import { RiDashboardHorizontalLine } from 'react-icons/ri';
 import { IconType } from 'react-icons/lib';
 
-
-
-/* ── SVG icon paths for each skill ── */
 const FRONTEND_SKILLS = [
-  {
-    name: 'HTML',
-    brandColor: '#e34c26',
-    icon:FaHtml5 
-
-  },
-  {
-    name: 'CSS',
-    brandColor: '#264de4',
-    icon:FaCss 
-
-
-  },
-  {
-    name: 'JavaScript',
-    brandColor: '#f7df1e',
-    icon: FaJs 
-  },
-  {
-    name: 'Bootstrap',
-    brandColor: '#7952b3',
-    icon: FaBootstrap 
-  },
-  {
-    name: 'Tailwind',
-    brandColor: '#06b6d4',
-    icon: SiTailwindcss 
-
-  },
-  {
-    name: 'SASS',
-    brandColor: '#cc6699',
-icon: BsFiletypeSass   },
-  {
-    name: 'TypeScript',
-    brandColor: '#3178c6',
-icon: BsTypescript 
-  },
-  {
-    name: 'Git',
-    brandColor: '#f05032',
-icon: FaGitAlt 
-  },
-  {
-    name: 'GitHub',
-    brandColor: '#f05032',
-icon: FaGithub 
-    
-  },
-  {
-    name: 'Next.js',
-    brandColor: '#000000',
-icon: SiNextdotjs 
-  },
-  {
-    name: 'API Integration',
-    brandColor: '#a14c4c',
-icon: TbApi 
-
-  },
-  {
-    name: 'React',
-    brandColor: '#61dafb',
-icon: IoLogoReact 
-  },
+  { name: 'HTML', brandColor: '#e34c26', icon: FaHtml5 },
+  { name: 'CSS', brandColor: '#264de4', icon: FaCss },
+  { name: 'JavaScript', brandColor: '#f7df1e', icon: FaJs },
+  { name: 'Bootstrap', brandColor: '#7952b3', icon: FaBootstrap },
+  { name: 'Tailwind', brandColor: '#06b6d4', icon: SiTailwindcss },
+  { name: 'SASS', brandColor: '#cc6699', icon: BsFiletypeSass },
+  { name: 'TypeScript', brandColor: '#3178c6', icon: BsTypescript },
+  { name: 'Git', brandColor: '#f05032', icon: FaGitAlt },
+  { name: 'GitHub', brandColor: '#f05032', icon: FaGithub },
+  { name: 'Next.js', brandColor: '#000000', icon: SiNextdotjs },
+  { name: 'API Integration', brandColor: '#a14c4c', icon: TbApi },
+  { name: 'React', brandColor: '#61dafb', icon: IoLogoReact },
 ]
 
 const UIUX_SKILLS = [
-  {
-    name: 'Figma',
-    brandColor: '#f24e1e',
-icon: FaFigma
-   },
-  {
-    name: 'Adobe XD',
-    brandColor: '#ff61f6',
-icon: TbBrandAdobeXd 
-   },
-  {
-    name: 'Illustrator',
-    brandColor: '#ff9a00',
-icon: TbBrandAdobeIllustrator
-   },
-  {
-    name: 'Photoshop',
-    brandColor: '#31a8ff',
-icon: TbBrandAdobePhotoshop 
-  },
-  {
-    name: 'Wireframing',
-    brandColor: '#6366f1',
-icon: TbFrame
-
-  },
-  {
-    name: 'Prototyping',
-    brandColor: '#0acf83',
-icon: PiFlowArrowBold   },
-{
-    name: 'Dashboarding',
-    brandColor: '#079c63',
-icon: RiDashboardHorizontalLine 
-  },
+  { name: 'Figma', brandColor: '#f24e1e', icon: FaFigma },
+  { name: 'Adobe XD', brandColor: '#ff61f6', icon: TbBrandAdobeXd },
+  { name: 'Illustrator', brandColor: '#ff9a00', icon: TbBrandAdobeIllustrator },
+  { name: 'Photoshop', brandColor: '#31a8ff', icon: TbBrandAdobePhotoshop },
+  { name: 'Wireframing', brandColor: '#6366f1', icon: TbFrame },
+  { name: 'Prototyping', brandColor: '#0acf83', icon: PiFlowArrowBold },
+  { name: 'Dashboarding', brandColor: '#079c63', icon: RiDashboardHorizontalLine },
 ]
 
 interface SkillCardProps {
   name: string
   brandColor: string
-   icon: IconType
+  icon: IconType
   delay: number
   isVisible: boolean
 }
 
-function SkillCard({ name, brandColor, icon:Icon, delay, isVisible }: SkillCardProps) {
+function SkillCard({ name, brandColor, icon: Icon, delay, isVisible }: SkillCardProps) {
   const [hovered, setHovered] = useState(false)
+  const { darkMode } = useI18n()
 
   return (
     <div
@@ -143,8 +60,8 @@ function SkillCard({ name, brandColor, icon:Icon, delay, isVisible }: SkillCardP
         transition-all duration-400 cursor-default
         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
         ${hovered
-          ? 'border-gray-200 bg-white shadow-md scale-110'
-          : 'border-[#f0ecec] bg-[#fafafa] scale-100'
+          ? 'border-gray-200 dark:border-white/20 bg-white dark:bg-[#222] shadow-md dark:shadow-black/40 scale-110'
+          : 'border-[#f0ecec] dark:border-white/8 bg-[#fafafa] dark:bg-[#1a1a1a] scale-100'
         }
       `}
       style={{
@@ -159,7 +76,7 @@ function SkillCard({ name, brandColor, icon:Icon, delay, isVisible }: SkillCardP
         className="w-8 h-8 flex items-center justify-center transition-all duration-200"
         style={{
           color: hovered ? brandColor : '#757070',
-          fontSize: hovered? '26px' : '22px',
+          fontSize: hovered ? '26px' : '22px',
         }}
       >
         <Icon />
@@ -168,7 +85,11 @@ function SkillCard({ name, brandColor, icon:Icon, delay, isVisible }: SkillCardP
       {/* Label */}
       <p
         className="text-[11px] text-center leading-tight font-medium transition-colors duration-200"
-        style={{ color: hovered ? '#1e1e1e' : '#bbb' }}
+        style={{ 
+          color: hovered 
+            ? (darkMode ? '#f0f0f0' : '#1e1e1e') 
+            : (darkMode ? '#d0d0d0' : '#888') 
+        }}
       >
         {name}
       </p>
@@ -189,7 +110,7 @@ export default function SkillsSection() {
   const { t } = useI18n()
 
   return (
-    <section id="skills" className="py-24 bg-white">
+    <section id="skills" className="py-24 bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
       <div ref={ref} className="max-w-7xl mx-auto px-10 md:px-20">
         <div className="flex flex-col lg:flex-row gap-14 md:gap-[20rem]">
 
@@ -198,12 +119,12 @@ export default function SkillsSection() {
             className={`lg:w-[280px] flex-shrink-0 transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
           >
             <div className="relative inline-block">
-              <h2 className="text-[38px] font-bold text-[#1e1e1e]" style={{ fontFamily: 'Istok Web' }}>
+              <h2 className="text-[38px] font-bold text-[#1e1e1e] dark:text-[#f0f0f0]" style={{ fontFamily: 'Istok Web' }}>
                 {t('skills.title')}
               </h2>
               <div className="absolute top-[1.875rem] right-[-14px] w-2 h-2 rounded-full bg-primary" />
             </div>
-            <p className="mt-4 text-[#626262] text-base leading-relaxed">
+            <p className="mt-4 text-[#626262] dark:text-[#a0a0a0] text-base leading-relaxed">
               {t('skills.desc')}
             </p>
             <div className="mt-8 w-12 h-[3px] rounded-full bg-gradient-to-r from-primary to-transparent" />

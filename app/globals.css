@@ -3,10 +3,42 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Light mode variables ── */
 :root {
   --primary: #f6724e;
   --dark: #1e1e1e;
   --muted: #8a7d7d;
+
+  --bg: #ffffff;
+  --bg-alt: #fafafa;
+  --bg-card: #ffffff;
+  --border: #f3eeee;
+  --border-subtle: rgba(0,0,0,0.06);
+  --text-heading: #1e1e1e;
+  --text-body: #626262;
+  --text-sub: #2e2b2b;
+  --text-muted: #8a7d7d;
+  --text-placeholder: #bbb;
+  --input-bg: #ffffff;
+  --scrollbar-track: #f1f1f1;
+  --shadow-card: 0px 0px 2px 0px rgba(0,0,0,0.25);
+}
+
+/* ── Dark mode variables ── */
+.dark {
+  --bg: #0f0f0f;
+  --bg-alt: #161616;
+  --bg-card: #1a1a1a;
+  --border: rgba(255,255,255,0.08);
+  --border-subtle: rgba(255,255,255,0.05);
+  --text-heading: #f0f0f0;
+  --text-body: #a0a0a0;
+  --text-sub: #d0d0d0;
+  --text-muted: #7a7a7a;
+  --text-placeholder: #555;
+  --input-bg: #111111;
+  --scrollbar-track: #1a1a1a;
+  --shadow-card: 0px 0px 2px 0px rgba(0,0,0,0.8);
 }
 
 * {
@@ -19,8 +51,10 @@ html {
 
 body {
   font-family: 'Istok Web', sans-serif;
-  background: #ffffff;
+  background: var(--bg);
+  color: var(--text-heading);
   overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 /* Custom Scrollbar */
@@ -28,7 +62,7 @@ body {
   width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--scrollbar-track);
 }
 ::-webkit-scrollbar-thumb {
   background: #f6724e;
@@ -59,6 +93,10 @@ body {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.3);
 }
+.dark .glass {
+  background: rgba(30, 30, 30, 0.75);
+  border: 1px solid rgba(255,255,255,0.1);
+}
 
 /* Skill card hover */
 .skill-card {
@@ -77,6 +115,9 @@ body {
 .project-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 24px 48px rgba(0,0,0,0.12);
+}
+.dark .project-card:hover {
+  box-shadow: 0 24px 48px rgba(0,0,0,0.5);
 }
 
 /* Nav link underline animation */
@@ -156,7 +197,12 @@ body {
 /* Contact form inputs */
 .form-input {
   transition: all 0.3s ease;
-  border-bottom: 2px solid #e5e7eb;
+  border-bottom: 2px solid var(--border);
+  background: transparent;
+  color: var(--text-sub);
+}
+.form-input::placeholder {
+  color: var(--text-placeholder);
 }
 .form-input:focus {
   border-bottom-color: #f6724e;
@@ -236,4 +282,15 @@ body {
 .footer-glow {
   background: linear-gradient(90deg, transparent, rgba(246,114,78,0.6), transparent);
   height: 1px;
+}
+
+/* Dark mode transition for everything */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+/* But don't slow down transforms/opacity transitions */
+.transition-all, [class*="transition-"] {
+  transition: all var(--tw-transition-duration, 0.3s) var(--tw-transition-timing-function, ease);
 }

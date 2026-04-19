@@ -52,12 +52,11 @@ function WatermarkName() {
               fontSize: 'clamp(56px, 11vw, 128px)',
               letterSpacing: '-0.02em',
               lineHeight: 1,
-              /* Default: very faint gray */
               color: litChars.has(i)
-                ? 'rgba(246,114,78,0.75)'   /* lit: primary orange */
+                ? 'rgba(246,114,78,0.75)'
                 : char === ' '
                 ? 'transparent'
-                : 'rgba(180,180,180,0.13)', /* dim: almost invisible */
+                : 'rgba(180,180,180,0.13)',
               textShadow: litChars.has(i)
                 ? '0 0 40px rgba(246,114,78,0.3)'
                 : 'none',
@@ -97,7 +96,7 @@ export default function HeroSection() {
     <section
       id="hero"
       ref={heroRef}
-      className="relative min-h-screen flex items-center overflow-hidden bg-white pb-24"
+      className="relative min-h-screen flex items-center overflow-hidden bg-white dark:bg-[#0f0f0f] pb-24 transition-colors duration-300"
       style={{ paddingTop: '80px' }}
     >
       {/* Soft radial gradient chasing mouse */}
@@ -112,7 +111,7 @@ export default function HeroSection() {
       {/* Per-character interactive watermark */}
       <WatermarkName />
 
-      {/* ── Main content — wider max-width, more horizontal padding ── */}
+      {/* ── Main content ── */}
       <div
         ref={ref}
         className="relative z-10 w-full max-w-7xl mx-auto px-10 md:px-20"
@@ -133,7 +132,7 @@ export default function HeroSection() {
               {/* Soft glow */}
               <div className="absolute inset-[-6px] rounded-full bg-gradient-to-br from-primary/15 to-transparent" />
 
-              <div className="w-full h-full rounded-full overflow-hidden relative z-10 bg-gradient-to-b from-gray-100 to-gray-200 animate-float">
+              <div className="w-full h-full rounded-full overflow-hidden relative z-10 bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 animate-float">
                 <img
                   src="https://www.figma.com/api/mcp/asset/0c1fb48f-dbc5-4b54-8b04-ef296cf530c5"
                   alt="Momen Esam"
@@ -148,7 +147,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* ── Text content — wider ── */}
+          {/* ── Text content ── */}
           <div className="flex flex-col gap-5 text-center md:text-left max-w-lg">
 
             <div
@@ -167,7 +166,7 @@ export default function HeroSection() {
             </div>
 
             <p
-              className={`text-muted text-base leading-relaxed transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+              className={`text-[#626262] dark:text-[#a0a0a0] text-base leading-relaxed transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
               style={{ transitionDelay: '0.38s' }}
             >
               {t('hero.desc')}
@@ -217,7 +216,7 @@ export default function HeroSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-muted hover:border-primary hover:text-primary hover:scale-110 transition-all duration-300"
+                  className="w-10 h-10 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center text-[#8a7d7d] dark:text-[#666] hover:border-primary hover:text-primary hover:scale-110 transition-all duration-300"
                   data-hover="true"
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -232,7 +231,7 @@ export default function HeroSection() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-28 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="text-[10px] text-muted uppercase tracking-[0.3em] animate-pulse">
+        <span className="text-[10px] text-[#8a7d7d] dark:text-[#555] uppercase tracking-[0.3em] animate-pulse">
           {t('hero.scroll')}
         </span>
         <div className="w-px h-8 bg-gradient-to-b from-primary/60 to-transparent animate-bounce" />

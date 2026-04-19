@@ -16,6 +16,7 @@ const PROJECTS = [
     githubUrl: null,
     image: null,
     gradient: 'from-orange-100 to-red-50',
+    gradientDark: 'dark:from-orange-950/40 dark:to-red-950/30',
   },
   {
     title: 'Fokiry',
@@ -31,6 +32,7 @@ const PROJECTS = [
     githubUrl: 'https://github.com/momenesam11',
     image: null,
     gradient: 'from-blue-50 to-indigo-50',
+    gradientDark: 'dark:from-blue-950/40 dark:to-indigo-950/30',
   },
   {
     title: 'E-Commerce UI',
@@ -44,13 +46,14 @@ const PROJECTS = [
     githubUrl: null,
     image: null,
     gradient: 'from-green-50 to-teal-50',
+    gradientDark: 'dark:from-green-950/40 dark:to-teal-950/30',
   },
   {
     title: 'Dashboard App',
     type: 'Frontend Dev',
     description: 'Admin dashboard built with Next.js and Tailwind CSS, featuring data visualization',
     tags: [
-      { label: 'Next.js', color: '#000', bg: 'rgba(0,0,0,0.08)' },
+      { label: 'Next.js', color: '#aaa', bg: 'rgba(180,180,180,0.1)' },
       { label: 'Tailwind', color: '#38bdf8', bg: 'rgba(56,189,248,0.1)' },
       { label: 'TypeScript', color: '#3178c6', bg: 'rgba(49,120,198,0.1)' },
     ],
@@ -58,6 +61,7 @@ const PROJECTS = [
     githubUrl: 'https://github.com/momenesam11',
     image: null,
     gradient: 'from-sky-50 to-blue-50',
+    gradientDark: 'dark:from-sky-950/40 dark:to-blue-950/30',
   },
 ]
 
@@ -72,7 +76,7 @@ function ProjectCard({ project, delay, isVisible }: ProjectCardProps) {
 
   return (
     <div
-      className={`project-card bg-white rounded-[12px] shadow-[0px_0px_2px_0px_rgba(0,0,0,0.25)] flex flex-col overflow-hidden border border-transparent hover:border-primary/10 transition-all duration-700 ${
+      className={`project-card bg-white dark:bg-[#1a1a1a] rounded-[12px] shadow-[0px_0px_2px_0px_rgba(0,0,0,0.25)] dark:shadow-[0px_0px_4px_0px_rgba(0,0,0,0.6)] flex flex-col overflow-hidden border border-transparent dark:border-white/5 hover:border-primary/10 dark:hover:border-primary/20 transition-all duration-700 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
       }`}
       style={{ transitionDelay: `${delay}ms` }}
@@ -82,7 +86,7 @@ function ProjectCard({ project, delay, isVisible }: ProjectCardProps) {
     >
       {/* Image / Preview */}
       <div
-        className={`h-[142px] bg-gradient-to-br ${project.gradient} relative overflow-hidden flex items-center justify-center`}
+        className={`h-[142px] bg-gradient-to-br ${project.gradient} ${project.gradientDark} relative overflow-hidden flex items-center justify-center`}
       >
         {project.image ? (
           <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
@@ -97,7 +101,7 @@ function ProjectCard({ project, delay, isVisible }: ProjectCardProps) {
         <div
           className={`absolute inset-0 bg-primary/10 flex items-center justify-center transition-opacity duration-300 ${hovered ? 'opacity-100' : 'opacity-0'}`}
         >
-          <div className="bg-white/90 rounded-full px-4 py-1.5 text-sm font-bold text-primary">Preview</div>
+          <div className="bg-white/90 dark:bg-black/70 rounded-full px-4 py-1.5 text-sm font-bold text-primary">Preview</div>
         </div>
       </div>
 
@@ -107,11 +111,11 @@ function ProjectCard({ project, delay, isVisible }: ProjectCardProps) {
           <h3 className="text-[18px] font-normal text-primary capitalize" style={{ fontFamily: 'Istok Web' }}>
             {project.title}
           </h3>
-          <span className="text-[14px] text-[#5b5959]">{project.type}</span>
+          <span className="text-[14px] text-[#5b5959] dark:text-[#888]">{project.type}</span>
         </div>
 
         {/* Description */}
-        <p className="text-xs text-muted leading-relaxed">{project.description}</p>
+        <p className="text-xs text-[#8a7d7d] dark:text-[#777] leading-relaxed">{project.description}</p>
 
         {/* Tags */}
         <div className="flex flex-wrap gap-1.5">
@@ -177,7 +181,7 @@ export default function ProjectsSection() {
   })
 
   return (
-    <section id="projects" className="py-20 bg-white">
+    <section id="projects" className="py-20 bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
       <div ref={ref} className="max-w-7xl mx-auto px-10 md:px-20">
 
         {/* Header */}
@@ -185,13 +189,13 @@ export default function ProjectsSection() {
           className={`flex flex-col items-center gap-4 mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
           <div className="flex items-center gap-4 w-full max-w-lg">
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent to-[#6a6a6a]/30" />
-            <p className="text-[16px] text-[#6a6a6a] whitespace-nowrap">Some of my latest work</p>
-            <div className="flex-1 h-px bg-gradient-to-l from-transparent to-[#6a6a6a]/30" />
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent to-[#6a6a6a]/30 dark:to-white/10" />
+            <p className="text-[16px] text-[#6a6a6a] dark:text-[#888] whitespace-nowrap">Some of my latest work</p>
+            <div className="flex-1 h-px bg-gradient-to-l from-transparent to-[#6a6a6a]/30 dark:to-white/10" />
           </div>
 
           {/* Filter tabs */}
-          <div className="flex gap-2 bg-[#fafafa] border border-[#f3eeee] rounded-full p-1">
+          <div className="flex gap-2 bg-[#fafafa] dark:bg-[#1a1a1a] border border-[#f3eeee] dark:border-white/8 rounded-full p-1">
             {([['all', 'All'], ['ui', 'UI/UX'], ['dev', 'Frontend']] as const).map(([value, label]) => (
               <button
                 key={value}
@@ -199,7 +203,7 @@ export default function ProjectsSection() {
                 className={`px-5 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
                   filter === value
                     ? 'bg-primary text-white shadow-sm'
-                    : 'text-muted hover:text-primary'
+                    : 'text-[#8a7d7d] dark:text-[#777] hover:text-primary'
                 }`}
                 data-hover="true"
               >

@@ -1,5 +1,5 @@
 'use client'
-import { createContext, useContext, useState, ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 
 type Lang = 'en' | 'ar'
 
@@ -8,6 +8,8 @@ interface I18nContextType {
   setLang: (l: Lang) => void
   t: (key: string) => string
   dir: 'ltr' | 'rtl'
+  darkMode: boolean
+  toggleDarkMode: () => void
 }
 
 const translations: Record<string, Record<Lang, string>> = {
@@ -101,17 +103,43 @@ const I18nContext = createContext<I18nContextType>({
   setLang: () => {},
   t: (k) => k,
   dir: 'ltr',
+  darkMode: false,
+  toggleDarkMode: () => {},
 })
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Lang>('en')
+  const [darkMode, setDarkMode] = useState(false)
+
+  // Load saved preference on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('darkMode')
+    if (saved === 'true') {
+      setDarkMode(true)
+      document.documentElement.classList.add('dark')
+    }
+  }, [])
+
+  const toggleDarkMode = () => {
+    setDarkMode(prev => {
+      const next = !prev
+      if (next) {
+        document.documentElement.classList.add('dark')
+        localStorage.setItem('darkMode', 'true')
+      } else {
+        document.documentElement.classList.remove('dark')
+        localStorage.setItem('darkMode', 'false')
+      }
+      return next
+    })
+  }
 
   const t = (key: string): string => {
     return translations[key]?.[lang] ?? key
   }
 
   return (
-    <I18nContext.Provider value={{ lang, setLang, t, dir: lang === 'ar' ? 'rtl' : 'ltr' }}>
+    <I18nContext.Provider value={{ lang, setLang, t, dir: lang === 'ar' ? 'rtl' : 'ltr', darkMode, toggleDarkMode }}>
       <div dir={lang === 'ar' ? 'rtl' : 'ltr'} lang={lang}>
         {children}
       </div>

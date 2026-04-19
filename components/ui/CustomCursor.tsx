@@ -1,9 +1,11 @@
 'use client'
 import { useEffect, useRef } from 'react'
+import { useI18n } from '@/lib/i18n'
 
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null)
   const dotRef = useRef<HTMLDivElement>(null)
+  const { darkMode } = useI18n()
 
   useEffect(() => {
     const cursor = cursorRef.current
@@ -57,10 +59,10 @@ export default function CustomCursor() {
           width: '32px',
           height: '32px',
           transform: 'translate(-50%, -50%)',
-          border: '2px solid #000',
+          border: darkMode ? '2px solid #fff' : '2px solid #000',
           borderRadius: '2px',          // sharp corners = gaming crosshair feel
           transition: 'width 0.15s ease, height 0.15s ease, border-color 0.15s ease, border-radius 0.15s ease',
-          mixBlendMode: 'multiply',
+          mixBlendMode: darkMode ? 'screen' : 'multiply',
         }}
       />
       {/* Center dot — 1px sharp */}
@@ -75,7 +77,7 @@ export default function CustomCursor() {
           top: '-100px',
           width: '4px',
           height: '4px',
-          background: '#000',
+          background: darkMode ? '#fff' : '#000',
           borderRadius: '50%',
           transform: 'translate(-50%, -50%)',
           transition: 'background 0.15s ease, transform 0.1s ease',

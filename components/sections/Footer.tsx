@@ -8,7 +8,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-[#1e1e1e] text-white">
+    <footer className="bg-[#111] dark:bg-[#0a0a0a] text-white transition-colors duration-300">
       {/* Top glow line */}
       <div className="footer-glow w-full" />
 
@@ -23,7 +23,7 @@ export default function Footer() {
               <span className="text-sm font-normal text-gray-400 ml-1">tech</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-              UI/UX Designer & Frontend Developer crafting beautiful digital experiences from Cairo, Egypt.
+              UI/UX Designer &amp; Frontend Developer crafting beautiful digital experiences from Cairo, Egypt.
             </p>
             {/* Social */}
             <div className="flex gap-3 mt-1">
@@ -107,7 +107,7 @@ export default function Footer() {
             © {year} <span className="text-primary font-medium">Momen Esam</span>. All rights reserved.
           </p>
           <p className="text-gray-600 text-xs">
-            Designed in Figma · Built with Next.js & Tailwind
+            Designed in Figma · Built with Next.js &amp; Tailwind
           </p>
         </div>
       </div>
