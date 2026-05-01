@@ -108,7 +108,7 @@ function ProjectCard({ project, delay, isVisible }: ProjectCardProps) {
       <div className="p-4 flex flex-col gap-3 flex-1">
         {/* Title row */}
         <div className="flex items-center justify-between">
-          <h3 className="text-[18px] font-normal text-primary capitalize" style={{ fontFamily: 'Istok Web' }}>
+          <h3 className="text-[18px] font-normal text-primary capitalize" style={{ fontFamily: 'Cairo' }}>
             {project.title}
           </h3>
           <span className="text-[14px] text-[#5b5959] dark:text-[#888]">{project.type}</span>
@@ -173,12 +173,20 @@ function ProjectCard({ project, delay, isVisible }: ProjectCardProps) {
 export default function ProjectsSection() {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.1 })
   const [filter, setFilter] = useState<'all' | 'ui' | 'dev'>('all')
+  const [visibleCount, setVisibleCount] = useState(3)
 
   const filtered = PROJECTS.filter(p => {
     if (filter === 'ui') return p.type.toLowerCase().includes('ui')
     if (filter === 'dev') return p.type.toLowerCase().includes('frontend')
     return true
   })
+
+  const visibleProjects = filtered.slice(0, visibleCount)
+
+  const handleFilterChange = (value: 'all' | 'ui' | 'dev') => {
+    setFilter(value)
+    setVisibleCount(3)
+  }
 
   return (
     <section id="projects" className="py-20 bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
@@ -199,7 +207,7 @@ export default function ProjectsSection() {
             {([['all', 'All'], ['ui', 'UI/UX'], ['dev', 'Frontend']] as const).map(([value, label]) => (
               <button
                 key={value}
-                onClick={() => setFilter(value)}
+                onClick={() => handleFilterChange(value as any)}
                 className={`px-5 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
                   filter === value
                     ? 'bg-primary text-white shadow-sm'
@@ -214,8 +222,8 @@ export default function ProjectsSection() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {filtered.map((project, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {visibleProjects.map((project, i) => (
             <ProjectCard
               key={project.title}
               project={project}
@@ -225,20 +233,33 @@ export default function ProjectsSection() {
           ))}
         </div>
 
-        {/* View all CTA */}
+        {/* View all CTA / See More */}
         <div className={`flex justify-center mt-10 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '500ms' }}>
-          <a
-            href="https://www.behance.net/momenesam"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border-2 border-primary text-primary font-bold px-8 py-3 rounded-full text-sm hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-2"
-            data-hover="true"
-          >
-            View All on Behance
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
+          {visibleCount < filtered.length ? (
+            <button
+              onClick={() => setVisibleCount(prev => prev + 3)}
+              className="border-2 border-primary text-primary font-bold px-8 py-3 rounded-full text-sm hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-2"
+              data-hover="true"
+            >
+              See More
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M6 9l6 6 6-6"/>
+              </svg>
+            </button>
+          ) : (
+            <a
+              href="https://www.behance.net/momenesam"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-2 border-primary text-primary font-bold px-8 py-3 rounded-full text-sm hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-2"
+              data-hover="true"
+            >
+              View All on Behance
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          )}
         </div>
       </div>
     </section>

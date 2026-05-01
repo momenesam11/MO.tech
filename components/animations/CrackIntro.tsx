@@ -114,7 +114,7 @@ export default function CrackIntro({ onComplete }: CrackIntroProps) {
         <div className="flex flex-col items-center">
           <motion.div 
             className="text-8xl font-bold text-[#111] dark:text-white" 
-            style={{ fontFamily: 'Istok Web' }}
+            style={{ fontFamily: 'Cairo' }}
             animate={stage > 0 ? { scale: [1, 1.02, 1] } : {}}
             transition={{ duration: 0.2 }}
           >

@@ -119,7 +119,7 @@ export default function SkillsSection() {
             className={`lg:w-[280px] flex-shrink-0 transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
           >
             <div className="relative inline-block">
-              <h2 className="text-[38px] font-bold text-[#1e1e1e] dark:text-[#f0f0f0]" style={{ fontFamily: 'Istok Web' }}>
+              <h2 className="text-[38px] font-bold text-[#1e1e1e] dark:text-[#f0f0f0]" style={{ fontFamily: 'Cairo' }}>
                 {t('skills.title')}
               </h2>
               <div className="absolute top-[1.875rem] right-[-14px] w-2 h-2 rounded-full bg-primary" />
@@ -137,7 +137,7 @@ export default function SkillsSection() {
             <div>
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-5 h-px bg-primary" />
-                <span className="text-primary text-base italic" style={{ fontFamily: 'Istok Web' }}>
+                <span className="text-primary text-base italic" style={{ fontFamily: 'Cairo' }}>
                   {t('skills.frontend')}
                 </span>
                 <div className="flex-1 h-px bg-gradient-to-r from-primary/30 to-transparent" />
@@ -158,7 +158,7 @@ export default function SkillsSection() {
             <div>
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-5 h-px bg-primary" />
-                <span className="text-primary text-base italic" style={{ fontFamily: 'Istok Web' }}>
+                <span className="text-primary text-base italic" style={{ fontFamily: 'Cairo' }}>
                   {t('skills.uiux')}
                 </span>
                 <div className="flex-1 h-px bg-gradient-to-r from-primary/30 to-transparent" />

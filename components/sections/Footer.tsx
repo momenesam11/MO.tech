@@ -19,7 +19,7 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="flex flex-col gap-4">
-            <div className="text-2xl font-bold flex items-baseline gap-1" style={{ fontFamily: 'Istok Web' }}>
+            <div className="text-2xl font-bold flex items-baseline gap-1" style={{ fontFamily: 'Cairo' }}>
               <span>MO</span>
               <span className="text-primary">.</span>
               <span className="text-sm font-normal text-gray-400 ml-1">tech</span>

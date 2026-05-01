@@ -36,7 +36,7 @@ function AnimatedCounter({ value, suffix, isVisible }: { value: number; suffix: 
   }, [isVisible, value])
 
   return (
-    <span className="text-4xl md:text-5xl font-bold text-primary tabular-nums" style={{ fontFamily: 'Istok Web' }}>
+    <span className="text-4xl md:text-5xl font-bold text-primary tabular-nums" style={{ fontFamily: 'Cairo' }}>
       {count}{suffix}
     </span>
   )

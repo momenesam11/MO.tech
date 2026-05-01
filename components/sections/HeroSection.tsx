@@ -43,7 +43,7 @@ function WatermarkName() {
       className="absolute top-6 left-0 right-0 flex justify-center pointer-events-none select-none overflow-hidden"
       aria-hidden="true"
     >
-      <div className="flex" style={{ fontFamily: 'Istok Web' }}>
+      <div className="flex" style={{ fontFamily: 'Cairo' }}>
         {NAME.split('').map((char, i) => (
           <span
             key={i}
@@ -135,7 +135,7 @@ export default function HeroSection() {
 
               <div className="w-full h-full rounded-full overflow-hidden relative z-10 bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 animate-float">
                 <img
-                  src="https://www.figma.com/api/mcp/asset/0c1fb48f-dbc5-4b54-8b04-ef296cf530c5"
+                  src="/avatar.png"
                   alt="Momen Esam"
                   className="w-full h-full object-cover"
                 />
@@ -160,7 +160,7 @@ export default function HeroSection() {
               </span>
               <h1
                 className="text-4xl md:text-[3.2rem] font-bold text-primary leading-tight"
-                style={{ fontFamily: 'Istok Web' }}
+                style={{ fontFamily: 'Cairo' }}
               >
                 Momen Esam
               </h1>

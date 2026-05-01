@@ -99,16 +99,16 @@ const translations: Record<string, Record<Lang, string>> = {
 }
 
 const I18nContext = createContext<I18nContextType>({
-  lang: 'en',
+  lang: 'ar',
   setLang: () => {},
   t: (k) => k,
-  dir: 'ltr',
+  dir: 'rtl',
   darkMode: false,
   toggleDarkMode: () => {},
 })
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>('en')
+  const [lang, setLang] = useState<Lang>('ar')
   const [darkMode, setDarkMode] = useState(false)
   const [mounted, setMounted] = useState(false)
 

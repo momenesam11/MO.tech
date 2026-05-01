@@ -3,9 +3,11 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { useState } from 'react'
 import { HiEnvelope, HiMapPin, HiPaperAirplane } from 'react-icons/hi2'
 import { FaWhatsapp, FaGithub, FaLinkedinIn, FaBehance } from 'react-icons/fa6'
+import { useI18n } from '@/lib/i18n'
 
 export default function ContactSection() {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.15 })
+  const { t } = useI18n()
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
@@ -26,7 +28,7 @@ export default function ContactSection() {
   const CONTACT_ITEMS = [
     {
       icon: <FaWhatsapp className="text-xl" />,
-      label: 'WhatsApp',
+      label: t('contact.whatsapp'),
       value: '+201021179969',
       href: 'https://wa.me/201021179969',
       color: '#25D366',
@@ -42,7 +44,7 @@ export default function ContactSection() {
     },
     {
       icon: <HiMapPin className="text-xl" />,
-      label: 'Location',
+      label: t('contact.loc'),
       value: 'Cairo, Egypt',
       href: 'https://maps.google.com/?q=Cairo,Egypt',
       color: '#4e78f6',
@@ -59,16 +61,16 @@ export default function ContactSection() {
           className={`flex flex-col items-center gap-3 mb-14 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
           <span className="text-primary text-sm font-bold uppercase tracking-[0.25em] bg-primary/10 px-3 py-1.5 rounded-full">
-            Get In Touch
+            {t('contact.badge')}
           </span>
           <div className="relative">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1e1e1e] dark:text-[#f0f0f0] text-center" style={{ fontFamily: 'Istok Web' }}>
-              Contact Me
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1e1e1e] dark:text-[#f0f0f0] text-center" style={{ fontFamily: 'Cairo' }}>
+              {t('contact.title')}
             </h2>
             <div className="absolute -top-1 -right-3 w-2 h-2 rounded-full bg-primary" />
           </div>
           <p className="text-[#8a7d7d] dark:text-[#888] text-center max-w-md text-base">
-            Have a project in mind? Let&apos;s talk and bring your ideas to life.
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -106,7 +108,7 @@ export default function ContactSection() {
               className={`mt-2 p-5 rounded-2xl border border-[#f3eeee] dark:border-white/8 bg-[#fafafa] dark:bg-[#1a1a1a] transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
               style={{ transitionDelay: '0.46s' }}
             >
-              <p className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider mb-4">Follow Me</p>
+              <p className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider mb-4">{t('contact.follow')}</p>
               <div className="flex gap-3">
                 {[
                   { href: 'https://github.com/momenesam11', label: 'GitHub', icon: <FaGithub size={20} /> },
@@ -139,25 +141,25 @@ export default function ContactSection() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {/* Name */}
                   <div className="flex flex-col gap-2">
-                    <label className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider">Your Name</label>
+                    <label className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider">{t('contact.name')}</label>
                     <input
                       type="text"
                       name="name"
                       value={form.name}
                       onChange={handleChange}
-                      placeholder="Momen Esam"
+                      placeholder={t('contact.ph.name')}
                       className="form-input bg-transparent border-0 border-b-2 border-gray-200 dark:border-white/10 focus:border-primary px-0 py-2.5 text-sm text-[#2e2b2b] dark:text-[#d0d0d0] placeholder-gray-300 dark:placeholder-[#444] outline-none w-full transition-colors duration-300"
                     />
                   </div>
                   {/* Email */}
                   <div className="flex flex-col gap-2">
-                    <label className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider">Email Address</label>
+                    <label className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider">{t('contact.email')}</label>
                     <input
                       type="email"
                       name="email"
                       value={form.email}
                       onChange={handleChange}
-                      placeholder="moment.esam15@gmail.com"
+                      placeholder={t('contact.ph.email')}
                       className="form-input bg-transparent border-0 border-b-2 border-gray-200 dark:border-white/10 focus:border-primary px-0 py-2.5 text-sm text-[#2e2b2b] dark:text-[#d0d0d0] placeholder-gray-300 dark:placeholder-[#444] outline-none w-full transition-colors duration-300"
                     />
                   </div>
@@ -165,25 +167,25 @@ export default function ContactSection() {
 
                 {/* Subject */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider">Subject</label>
+                  <label className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider">{t('contact.subject')}</label>
                   <input
                     type="text"
                     name="subject"
                     value={form.subject}
                     onChange={handleChange}
-                    placeholder="Project Inquiry"
+                    placeholder={t('contact.ph.sub')}
                     className="form-input bg-transparent border-0 border-b-2 border-gray-200 dark:border-white/10 focus:border-primary px-0 py-2.5 text-sm text-[#2e2b2b] dark:text-[#d0d0d0] placeholder-gray-300 dark:placeholder-[#444] outline-none w-full transition-colors duration-300"
                   />
                 </div>
 
                 {/* Message */}
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider">Message</label>
+                  <label className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider">{t('contact.message')}</label>
                   <textarea
                     name="message"
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="Tell me about your project..."
+                    placeholder={t('contact.ph.msg')}
                     rows={5}
                     className="form-input bg-transparent border-0 border-b-2 border-gray-200 dark:border-white/10 focus:border-primary px-0 py-2.5 text-sm text-[#2e2b2b] dark:text-[#d0d0d0] placeholder-gray-300 dark:placeholder-[#444] outline-none w-full resize-none transition-colors duration-300"
                   />
@@ -204,17 +206,17 @@ export default function ContactSection() {
                 >
                   {status === 'idle' && (
                     <>
-                      Send Message
+                      {t('contact.send')}
                       <HiPaperAirplane className="text-lg rotate-90" />
                     </>
                   )}
                   {status === 'sending' && (
                     <>
-                      Sending...
+                      {t('contact.sending')}
                       <span className="animate-spin text-lg">◌</span>
                     </>
                   )}
-                  {status === 'sent' && <>Message Sent! ✓</>}
+                  {status === 'sent' && <>{t('contact.sent')}</>}
                 </button>
               </div>
             </div>
