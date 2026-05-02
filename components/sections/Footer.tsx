@@ -1,8 +1,10 @@
 'use client'
 import { FaGithub, FaLinkedinIn, FaBehance, FaWhatsapp } from 'react-icons/fa6'
 import { HiEnvelope, HiMapPin } from 'react-icons/hi2'
+import { useI18n } from '@/lib/i18n'
 
 export default function Footer() {
+  const { lang, t } = useI18n()
   const year = new Date().getFullYear()
 
   const scrollTo = (href: string) => {
@@ -19,13 +21,12 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="flex flex-col gap-4">
-            <div className="text-2xl font-bold flex items-baseline gap-1" style={{ fontFamily: 'Cairo' }}>
-              <span>MO</span>
-              <span className="text-primary">.</span>
-              <span className="text-sm font-normal text-gray-400 ml-1">tech</span>
+            <div className="h-10 mb-1 flex justify-start">
+              <img src="/logo-light.png" alt="MO.tech" className="h-full w-auto object-contain hidden dark:block" />
+              <img src="/logo-dark.png" alt="MO.tech" className="h-full w-auto object-contain block dark:hidden" />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-              UI/UX Designer &amp; Frontend Developer crafting beautiful digital experiences from Cairo, Egypt.
+              {lang === 'ar' ? 'مصمم ومطور واجهات شغوف في القاهرة، أقدم تجارب رقمية مميزة.' : 'UI/UX Designer & Frontend Developer crafting beautiful digital experiences from Cairo, Egypt.'}
             </p>
             {/* Social */}
             <div className="flex gap-3 mt-1">
@@ -40,7 +41,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary/40 transition-all duration-300 text-lg"
+                  className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-white/40 transition-all duration-300 text-lg"
                   data-hover="true"
                 >
                   {s.icon}
@@ -51,19 +52,19 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="flex flex-col gap-4">
-            <h4 className="text-sm font-bold uppercase tracking-widest text-gray-300">Quick Links</h4>
+            <h4 className="text-sm font-bold uppercase tracking-widest text-gray-300">{lang === 'ar' ? 'روابط سريعة' : 'Quick Links'}</h4>
             <ul className="flex flex-col gap-2.5">
               {[
-                ['Home', '#hero'],
-                ['Skills', '#skills'],
-                ['Projects', '#projects'],
-                ['About', '#about'],
-                ['Contact', '#contact'],
+                [lang === 'ar' ? 'الرئيسية' : 'Home', '#hero'],
+                [lang === 'ar' ? 'مهاراتي' : 'Skills', '#skills'],
+                [lang === 'ar' ? 'أعمالي' : 'Projects', '#projects'],
+                [lang === 'ar' ? 'عني' : 'About', '#about'],
+                [lang === 'ar' ? 'تواصل معي' : 'Contact', '#contact'],
               ].map(([label, href]) => (
                 <li key={label}>
                   <button
                     onClick={() => scrollTo(href)}
-                    className="text-gray-400 text-sm hover:text-primary transition-colors duration-300 flex items-center gap-2 group"
+                    className="text-gray-400 text-sm hover:text-white transition-colors duration-300 flex items-center gap-2 group w-fit"
                     data-hover="true"
                   >
                     <span className="w-0 h-px bg-primary group-hover:w-4 transition-all duration-300" />
@@ -76,26 +77,26 @@ export default function Footer() {
 
           {/* Contact info */}
           <div className="flex flex-col gap-4">
-            <h4 className="text-sm font-bold uppercase tracking-widest text-gray-300">Contact</h4>
+            <h4 className="text-sm font-bold uppercase tracking-widest text-gray-300">{lang === 'ar' ? 'تواصل' : 'Contact'}</h4>
             <div className="flex flex-col gap-3">
-              <a href="mailto:moment.esam15@gmail.com" className="text-gray-400 text-sm hover:text-primary transition-colors flex items-center gap-2" data-hover="true">
+              <a href="mailto:moment.esam15@gmail.com" className="text-gray-400 text-sm hover:text-white transition-colors flex items-center gap-2 w-fit" data-hover="true">
                 <HiEnvelope className="text-primary text-base" />
                 moment.esam15@gmail.com
               </a>
-              <a href="https://wa.me/201021179969" target="_blank" rel="noopener noreferrer" className="text-gray-400 text-sm hover:text-primary transition-colors flex items-center gap-2" data-hover="true">
+              <a href="https://wa.me/201021179969" target="_blank" rel="noopener noreferrer" className="text-gray-400 text-sm hover:text-white transition-colors flex items-center gap-2 w-fit" data-hover="true">
                 <FaWhatsapp className="text-primary text-base" />
                 +201021179969
               </a>
-              <span className="text-gray-400 text-sm flex items-center gap-2">
+              <span className="text-gray-400 text-sm flex items-center gap-2 w-fit">
                 <HiMapPin className="text-primary text-base" />
-                Cairo, Egypt
+                {lang === 'ar' ? 'القاهرة، مصر' : 'Cairo, Egypt'}
               </span>
             </div>
 
             {/* Availability badge */}
             <div className="mt-2 inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 text-green-400 text-xs px-4 py-2 rounded-full w-fit">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              Available for new projects
+              {lang === 'ar' ? 'متاح للعمل على مشاريع جديدة' : 'Available for new projects'}
             </div>
           </div>
         </div>
@@ -106,10 +107,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-gray-500 text-sm">
-            © {year} <span className="text-primary font-medium">Momen Esam</span>. All rights reserved.
+            © {year} <span className="text-white font-medium">{lang === 'ar' ? 'مؤمن عصام' : 'Momen Esam'}</span>. {lang === 'ar' ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}
           </p>
           <p className="text-gray-600 text-xs">
-            Designed in Figma · Built with Next.js &amp; Tailwind
+            {lang === 'ar' ? 'صُمم بواسطة Figma · طُور باستخدام Next.js & Tailwind' : 'Designed in Figma · Built with Next.js & Tailwind'}
           </p>
         </div>
       </div>

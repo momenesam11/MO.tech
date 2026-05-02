@@ -177,7 +177,7 @@ export default function Navbar() {
           onHover={setTooltip}
         >
           <span className="text-[10px] sm:text-[11px] font-bold tracking-wide">
-            {lang === 'en' ? 'EN' : 'AR'}
+            {lang === 'en' ? 'AR' : 'EN'}
           </span>
         </DockBtn>
       </div>

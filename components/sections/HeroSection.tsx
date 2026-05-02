@@ -6,7 +6,6 @@ import { FaWhatsapp, FaGithub, FaLinkedinIn, FaBehance } from 'react-icons/fa6'
 
 const NAME = 'Momen Esam'
 
-/** Per-character interactive watermark */
 function WatermarkName() {
   const [litChars, setLitChars] = useState<Set<number>>(new Set())
   const containerRef = useRef<HTMLDivElement>(null)
@@ -42,6 +41,7 @@ function WatermarkName() {
       ref={containerRef}
       className="absolute top-6 left-0 right-0 flex justify-center pointer-events-none select-none overflow-hidden"
       aria-hidden="true"
+      dir="ltr"
     >
       <div className="flex" style={{ fontFamily: 'Cairo' }}>
         {NAME.split('').map((char, i) => (
@@ -76,7 +76,7 @@ function WatermarkName() {
 
 export default function HeroSection() {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.1 })
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 })
   const heroRef = useRef<HTMLDivElement>(null)
 
@@ -117,7 +117,7 @@ export default function HeroSection() {
         ref={ref}
         className="relative z-10 w-full max-w-7xl mx-auto px-10 md:px-20"
       >
-        <div className="flex flex-col md:flex-row items-center justify-center gap-14 md:gap-24 pt-24 pb-16">
+        <div className={`flex flex-col ${lang === 'ar' ? 'md:flex-row-reverse' : 'md:flex-row'} items-center justify-center gap-14 md:gap-24 pt-24 pb-16`}>
 
           {/* ── Avatar ── */}
           <div
@@ -149,7 +149,7 @@ export default function HeroSection() {
           </div>
 
           {/* ── Text content ── */}
-          <div className="flex flex-col gap-5 text-center md:text-left max-w-lg">
+          <div className="flex flex-col gap-5 text-center md:text-start max-w-lg">
 
             <div
               className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
@@ -162,7 +162,7 @@ export default function HeroSection() {
                 className="text-4xl md:text-[3.2rem] font-bold text-primary leading-tight"
                 style={{ fontFamily: 'Cairo' }}
               >
-                Momen Esam
+                {lang === 'ar' ? 'مؤمن عصام' : 'Momen Esam'}
               </h1>
             </div>
 
@@ -229,7 +229,7 @@ export default function HeroSection() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="text-[10px] text-[#8a7d7d] dark:text-[#555] uppercase tracking-[0.3em] animate-pulse">
+        <span className="text-[15px] font-bold text-[#8a7d7d] dark:text-[#fff] uppercase tracking-[0.3em] animate-pulse">
           {t('hero.scroll')}
         </span>
         <div className="w-px h-8 bg-gradient-to-b from-primary/60 to-transparent animate-bounce" />

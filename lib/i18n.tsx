@@ -22,7 +22,7 @@ const translations: Record<string, Record<Lang, string>> = {
   'nav.hire':     { en: 'Hire Me',  ar: 'وظّفني' },
 
   // Hero
-  'hero.badge':   { en: 'UI/UX Designer & Frontend Developer', ar: 'مصمم UI/UX ومطور واجهات' },
+  'hero.badge':   { en: 'UI/UX Designer & Frontend Developer', ar: 'مصمم واجهات وتجربة مستخدم و مطور واجهات أمامية' },
   'hero.desc':    { en: 'I create intuitive interfaces and transform ideas into responsive digital experiences. Crafting the bridge between beautiful design and clean code.', ar: 'أصمّم واجهات سهلة الاستخدام وأحوّل الأفكار إلى تجارب رقمية متجاوبة، أجمع بين الجمال البصري ونظافة الكود.' },
   'hero.contact': { en: 'Contact Me', ar: 'تواصل معي' },
   'hero.portfolio':{ en: 'My Portfolio', ar: 'أعمالي' },
@@ -36,10 +36,12 @@ const translations: Record<string, Record<Lang, string>> = {
   'skills.uiux':  { en: 'UI/UX', ar: 'تصميم UI/UX' },
 
   // Numbers
-  'numbers.projects': { en: 'Projects Completed', ar: 'مشروع منجز' },
+  'numbers.projects': { en: 'Successful Projects', ar: 'مشروع ناجح' },
   'numbers.years':    { en: 'Years Experience',   ar: 'سنوات خبرة' },
-  'numbers.clients':  { en: 'Happy Clients',      ar: 'عميل سعيد' },
+  'numbers.clients':  { en: 'Happy Clients',      ar: 'عميل' },
   'numbers.rate':     { en: 'Satisfaction Rate',  ar: 'معدل الرضا' },
+  'numbers.freelance':{ en: 'Top Rated Freelancer', ar: 'أعلى رتبة بائعي العمل الحر' },
+  'numbers.platforms':{ en: 'On Khamsat, Mostaql & Upwork', ar: 'على منصات خمسات، مستقل، وأب ورك' },
 
   // Projects
   'projects.subtitle': { en: 'Some of my latest work', ar: 'بعض أحدث أعمالي' },
@@ -50,10 +52,32 @@ const translations: Record<string, Record<Lang, string>> = {
   'projects.viewAll':  { en: 'View All on Behance', ar: 'كل الأعمال على Behance' },
 
   // Project names/descriptions
-  'proj.over.desc':   { en: 'Complete UI/UX redesign with modern interface and smooth user experience', ar: 'إعادة تصميم UI/UX كاملة بواجهة حديثة وتجربة مستخدم سلسة' },
-  'proj.fokiry.desc': { en: 'Responsive web app built with HTML, CSS and JavaScript', ar: 'تطبيق ويب متجاوب مبني بـ HTML و CSS و JavaScript' },
-  'proj.ecom.desc':   { en: 'Modern e-commerce interface with product listings, cart and checkout', ar: 'واجهة متجر إلكتروني حديثة مع قوائم المنتجات والسلة والدفع' },
-  'proj.dash.desc':   { en: 'Admin dashboard with Next.js and Tailwind, featuring data visualization', ar: 'لوحة تحكم مبنية بـ Next.js وTailwind مع تصور البيانات' },
+  'proj.over.desc':   { en: 'Complete UI/UX redesign project with modern interface and smooth user experience.', ar: 'إعادة تصميم UI/UX كاملة بواجهة حديثة وتجربة مستخدم سلسة.' },
+  'proj.nesbah.desc': { en: 'Mobile and web UI/UX design focusing on seamless digital experiences.', ar: 'تصميم واجهة وتجربة مستخدم لتطبيق ويب وموبايل يركز على تجربة رقمية سلسة.' },
+  'proj.accessories.desc': { en: 'E-commerce UI/UX design for an accessories store with smooth shopping flows.', ar: 'تصميم واجهة وتجربة مستخدم لمتجر إلكتروني لبيع الإكسسوارات مع تدفق شراء سلس.' },
+  'proj.omah.desc': { en: 'UI/UX design and prototyping for Omah App in Arabic.', ar: 'تصميم واجهة وتجربة المستخدم وعمل نماذج أولية (Prototyping) لتطبيق أُمة باللغة العربية.' },
+  'proj.taxi.desc': { en: 'Wireframing and prototyping for a modern Taxi booking mobile application.', ar: 'عمل التخطيط الهيكلي (Wireframe) والنماذج الأولية لتطبيق حجز سيارات أجرة.' },
+  'proj.reef.desc': { en: 'UI/UX design for Reef Charity with a focus on donation flows and user trust.', ar: 'تصميم واجهة وتجربة مستخدم لجمعية الريف الخيرية مع التركيز على تسهيل التبرعات وبناء الثقة.' },
+  
+  'proj.weather.desc': { en: 'Dynamic weather application fetching real-time API data to display forecasts.', ar: 'تطبيق طقس ديناميكي يجلب بيانات حية من واجهة برمجة التطبيقات (API) لعرض التوقعات.' },
+  'proj.fokiry.desc': { en: 'Responsive portfolio website built with HTML, CSS, and JavaScript.', ar: 'موقع ويب تعريفي متجاوب مبني باستخدام HTML و CSS و JavaScript.' },
+  'proj.daniels.desc': { en: 'Modern responsive frontend website template with clean code architecture.', ar: 'قالب موقع ويب أمامي متجاوب وحديث مع بنية كود نظيفة.' },
+  'proj.react.desc': { en: 'My initial exploration into building interactive web applications using React.', ar: 'أولى مشاريعي في بناء تطبيقات ويب تفاعلية باستخدام مكتبة React.' },
+  'proj.bakery.desc': { en: 'Delicious bakery landing page highlighting products with a responsive layout.', ar: 'صفحة هبوط لمخبز تعرض المنتجات بتصميم جذاب ومتجاوب.' },
+  'proj.eatic.desc': { en: 'Frontend implementation for a food delivery or restaurant service.', ar: 'تطوير واجهة أمامية لخدمة توصيل طعام أو مطعم.' },
+
+  'proj.over.title': { en: 'Over', ar: 'أوفر' },
+  'proj.nesbah.title': { en: 'Nesbah', ar: 'نسبة' },
+  'proj.accessories.title': { en: 'Accessories', ar: 'متجر إكسسوارات' },
+  'proj.omah.title': { en: 'Omah App', ar: 'تطبيق أُمة' },
+  'proj.taxi.title': { en: 'Taxi App', ar: 'تطبيق تاكسي' },
+  'proj.reef.title': { en: 'Reef Charity', ar: 'جمعية الريف' },
+  'proj.weather.title': { en: 'Weather App', ar: 'تطبيق الطقس' },
+  'proj.fokiry.title': { en: 'Fokiry', ar: 'فوكيري' },
+  'proj.daniels.title': { en: 'Daniels', ar: 'دانيلز' },
+  'proj.react.title': { en: 'React App', ar: 'تطبيق React' },
+  'proj.bakery.title': { en: 'Bakery', ar: 'المخبز' },
+  'proj.eatic.title': { en: 'Eatic', ar: 'إيتيك' },
 
   // About
   'about.badge':   { en: 'About Me',  ar: 'عني' },

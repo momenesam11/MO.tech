@@ -8,6 +8,8 @@ import NumbersSection from '@/components/sections/NumbersSection'
 import AboutSection from '@/components/sections/AboutSection'
 import ContactSection from '@/components/sections/ContactSection'
 import Footer from '@/components/sections/Footer'
+import CompaniesSection from '@/components/sections/CompaniesSection'
+import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import { useState } from 'react'
 
 export default function Home() {
@@ -23,7 +25,9 @@ export default function Home() {
         <HeroSection />
         <SkillsSection />
         <NumbersSection />
+        <CompaniesSection />
         <ProjectsSection />
+        <TestimonialsSection />
         <AboutSection />
         <ContactSection />
         <Footer />

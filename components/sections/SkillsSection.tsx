@@ -84,11 +84,11 @@ function SkillCard({ name, brandColor, icon: Icon, delay, isVisible }: SkillCard
 
       {/* Label */}
       <p
-        className="text-[11px] text-center leading-tight font-medium transition-colors duration-200"
+        className="text-[12px] text-center leading-tight font-medium transition-colors duration-200"
         style={{ 
           color: hovered 
             ? (darkMode ? '#f0f0f0' : '#1e1e1e') 
-            : (darkMode ? '#d0d0d0' : '#888') 
+            : (darkMode ? '#d0d0d0' : '#1e1e1e') 
         }}
       >
         {name}

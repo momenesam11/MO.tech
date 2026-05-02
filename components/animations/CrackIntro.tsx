@@ -67,7 +67,7 @@ export default function CrackIntro({ onComplete }: CrackIntroProps) {
         className="absolute inset-0"
         animate={{
           backdropFilter: `blur(${STAGES[stage].blur}px)`,
-          backgroundColor: `rgba(255, 255, 255, ${STAGES[stage].opacity})`,
+          backgroundColor: `rgba(10, 10, 10, ${STAGES[stage].opacity})`,
         }}
         transition={{ duration: 1, ease: "easeInOut" }}
       />
@@ -113,14 +113,11 @@ export default function CrackIntro({ onComplete }: CrackIntroProps) {
       >
         <div className="flex flex-col items-center">
           <motion.div 
-            className="text-8xl font-bold text-[#111] dark:text-white" 
-            style={{ fontFamily: 'Cairo' }}
+            className="h-20 mb-3" 
             animate={stage > 0 ? { scale: [1, 1.02, 1] } : {}}
             transition={{ duration: 0.2 }}
           >
-            <span>MO</span>
-            <span className="text-primary">.</span>
-            <span className="text-3xl font-normal text-muted ml-2">tech</span>
+            <img src="/logo-dark.png" alt="MO.tech" className="h-full w-auto object-contain drop-shadow-2xl" />
           </motion.div>
           <motion.p 
             initial={{ opacity: 0 }}
@@ -162,7 +159,7 @@ export default function CrackIntro({ onComplete }: CrackIntroProps) {
                   rotate: Math.random() * 1000 - 500
                 }}
                 transition={{ duration: 1.5, ease: [0.23, 1, 0.32, 1] }}
-                className="absolute w-40 h-40 bg-white/20 backdrop-blur-xl border border-white/40"
+                className="absolute w-40 h-40 bg-[#111]/90 backdrop-blur-3xl border border-white/20 shadow-2xl"
                 style={{ 
                   clipPath: `polygon(${Math.random()*100}% 0%, 100% ${Math.random()*100}%, 0% 100%)`
                 }}

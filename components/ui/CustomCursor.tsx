@@ -26,7 +26,18 @@ export default function CustomCursor() {
     }
 
     const onOver = (e: MouseEvent) => {
-      const el = (e.target as HTMLElement).closest('a, button, [data-hover]')
+      const target = e.target as HTMLElement
+      const el = target.closest('a, button, [data-hover]')
+      const footer = target.closest('footer')
+      
+      if (footer) {
+        cursor.classList.add('cursor--white')
+        dot.classList.add('dot--white')
+      } else {
+        cursor.classList.remove('cursor--white')
+        dot.classList.remove('dot--white')
+      }
+
       if (el) {
         cursor.classList.add('cursor--hover')
         dot.classList.add('dot--hover')
@@ -91,6 +102,13 @@ export default function CustomCursor() {
           #game-cursor, #game-dot {
             display: block;
           }
+        }
+        #game-cursor.cursor--white {
+          border-color: #fff !important;
+          mix-blend-mode: screen !important;
+        }
+        #game-dot.dot--white {
+          background: #fff !important;
         }
         #game-cursor.cursor--hover {
           width: 44px !important;

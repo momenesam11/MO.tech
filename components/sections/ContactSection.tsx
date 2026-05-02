@@ -3,11 +3,13 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { useState } from 'react'
 import { HiEnvelope, HiMapPin, HiPaperAirplane } from 'react-icons/hi2'
 import { FaWhatsapp, FaGithub, FaLinkedinIn, FaBehance } from 'react-icons/fa6'
+import { SiUpwork } from 'react-icons/si'
 import { useI18n } from '@/lib/i18n'
+import emailjs from '@emailjs/browser'
 
 export default function ContactSection() {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.15 })
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
@@ -15,14 +17,35 @@ export default function ContactSection() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = async (e: React.MouseEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!form.name || !form.email || !form.message) return
+    
     setStatus('sending')
-    await new Promise(r => setTimeout(r, 1500))
-    setStatus('sent')
-    setForm({ name: '', email: '', subject: '', message: '' })
-    setTimeout(() => setStatus('idle'), 4000)
+    
+    const templateParams = {
+      from_name: form.name,
+      from_email: form.email,
+      subject: form.subject || 'New Contact Message',
+      message: form.message,
+      to_name: 'Momen Esam',
+    }
+
+    try {
+      await emailjs.send(
+        'service_oj13jpj',
+        'template_ts7obps',
+        templateParams,
+        'CrfsSyIHlOfjUd9_b'
+      )
+      setStatus('sent')
+      setForm({ name: '', email: '', subject: '', message: '' })
+      setTimeout(() => setStatus('idle'), 4000)
+    } catch (error) {
+      console.error('EmailJS Error:', error)
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 4000)
+    }
   }
 
   const CONTACT_ITEMS = [
@@ -58,18 +81,18 @@ export default function ContactSection() {
 
         {/* Header */}
         <div
-          className={`flex flex-col items-center gap-3 mb-14 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          className={`flex flex-col items-center mb-16 mt-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
-          <span className="text-primary text-sm font-bold uppercase tracking-[0.25em] bg-primary/10 px-3 py-1.5 rounded-full">
+          <span className="text-primary text-sm font-bold uppercase tracking-[0.25em] bg-primary/10 px-3 py-1.5 rounded-full mb-4">
             {t('contact.badge')}
           </span>
-          <div className="relative">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1e1e1e] dark:text-[#f0f0f0] text-center" style={{ fontFamily: 'Cairo' }}>
+          <div className="flex items-baseline gap-1.5 mb-3">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1e1e1e] dark:text-[#f0f0f0] text-center" style={{ fontFamily: 'Cairo' }}>
               {t('contact.title')}
             </h2>
-            <div className="absolute -top-1 -right-3 w-2 h-2 rounded-full bg-primary" />
+            <div className="w-2.5 h-2.5 rounded-full bg-primary" />
           </div>
-          <p className="text-[#8a7d7d] dark:text-[#888] text-center max-w-md text-base">
+          <p className="text-[#6a6a6a] dark:text-[#a0a0a0] text-center max-w-md text-base font-medium">
             {t('contact.subtitle')}
           </p>
         </div>
@@ -84,7 +107,7 @@ export default function ContactSection() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex items-center gap-4 p-5 rounded-2xl border border-[#f3eeee] dark:border-white/8 hover:border-primary/30 dark:hover:border-primary/30 hover:-translate-y-1 transition-all duration-500 bg-[#fafafa] dark:bg-[#1a1a1a] group ${
+                className={`flex items-center gap-3 md:gap-4 p-4 md:p-5 rounded-2xl border border-[#f3eeee] dark:border-white/8 hover:border-primary/30 dark:hover:border-primary/30 hover:-translate-y-1 transition-all duration-500 bg-[#fafafa] dark:bg-[#1a1a1a] group ${
                   isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
                 }`}
                 style={{ transitionDelay: `${0.1 + i * 0.12}s` }}
@@ -96,9 +119,9 @@ export default function ContactSection() {
                 >
                   {item.icon}
                 </div>
-                <div>
-                  <p className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider mb-0.5">{item.label}</p>
-                  <p className="text-sm font-medium text-[#2e2b2b] dark:text-[#d0d0d0]">{item.value}</p>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[12px] md:text-[13px] font-medium text-[#777] dark:text-[#999] mb-0.5 md:mb-1">{item.label}</p>
+                  <p className="text-[14px] md:text-[15px] font-semibold text-[#2e2b2b] dark:text-[#d0d0d0] break-all sm:break-normal line-clamp-1 hover:line-clamp-none">{item.value}</p>
                 </div>
               </a>
             ))}
@@ -108,8 +131,25 @@ export default function ContactSection() {
               className={`mt-2 p-5 rounded-2xl border border-[#f3eeee] dark:border-white/8 bg-[#fafafa] dark:bg-[#1a1a1a] transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
               style={{ transitionDelay: '0.46s' }}
             >
-              <p className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider mb-4">{t('contact.follow')}</p>
-              <div className="flex gap-3">
+              <p className="text-[14px] font-medium text-[#777] dark:text-[#999] mb-4">{t('contact.follow')}</p>
+              <div className="flex flex-wrap gap-3">
+                {[
+                  { href: 'https://khamsat.com/user/momenesam11', label: 'Khamsat', icon: <img src="/khamsat.png" alt="Khamsat" className="w-5 h-5 object-contain" /> },
+                  { href: 'https://mostaql.com/u/momenesam11', label: 'Mostaql', icon: <img src="/mostaql.png" alt="Mostaql" className="w-5 h-5 object-contain" /> },
+                  { href: 'https://www.upwork.com/freelancers/~014da48df25e4e117b', label: 'Upwork', icon: <SiUpwork className="text-[22px] text-[#14a800]" /> },
+                ].map(freelance => (
+                  <a
+                    key={freelance.label}
+                    href={freelance.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-xl border border-[#f3eeee] dark:border-white/10 flex items-center justify-center bg-white dark:bg-[#1a1a1a] hover:border-primary/30 hover:scale-110 transition-all duration-300 overflow-hidden"
+                    data-hover="true"
+                  >
+                    {freelance.icon}
+                  </a>
+                ))}
+                <div className="w-px h-10 bg-gray-200 dark:bg-white/10 mx-1" />
                 {[
                   { href: 'https://github.com/momenesam11', label: 'GitHub', icon: <FaGithub size={20} /> },
                   { href: 'https://www.behance.net/momenesam', label: 'Behance', icon: <FaBehance size={20} /> },
@@ -121,7 +161,7 @@ export default function ContactSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="w-10 h-10 rounded-xl border border-[#f3eeee] dark:border-white/10 flex items-center justify-center text-[#8a7d7d] dark:text-[#666] hover:text-primary hover:border-primary/30 hover:scale-110 transition-all duration-300"
+                    className="w-10 h-10 rounded-xl border border-[#f3eeee] dark:border-white/10 flex items-center justify-center text-[#555] dark:text-[#aaa] bg-white dark:bg-[#1a1a1a] hover:text-primary hover:border-primary/30 hover:scale-110 transition-all duration-300"
                     data-hover="true"
                   >
                     {social.icon}
@@ -140,54 +180,54 @@ export default function ContactSection() {
               <div className="flex flex-col gap-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {/* Name */}
-                  <div className="flex flex-col gap-2">
-                    <label className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider">{t('contact.name')}</label>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[13px] font-medium text-[#777] dark:text-[#999]">{t('contact.name')}</label>
                     <input
                       type="text"
                       name="name"
                       value={form.name}
                       onChange={handleChange}
                       placeholder={t('contact.ph.name')}
-                      className="form-input bg-transparent border-0 border-b-2 border-gray-200 dark:border-white/10 focus:border-primary px-0 py-2.5 text-sm text-[#2e2b2b] dark:text-[#d0d0d0] placeholder-gray-300 dark:placeholder-[#444] outline-none w-full transition-colors duration-300"
+                      className="form-input bg-transparent border-0 border-b-2 border-gray-200 dark:border-white/10 focus:border-primary px-0 py-2.5 text-[15px] font-medium text-[#1e1e1e] dark:text-[#e0e0e0] placeholder-gray-400 dark:placeholder-[#666] outline-none w-full transition-colors duration-300"
                     />
                   </div>
                   {/* Email */}
-                  <div className="flex flex-col gap-2">
-                    <label className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider">{t('contact.email')}</label>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[13px] font-medium text-[#777] dark:text-[#999]">{t('contact.email')}</label>
                     <input
                       type="email"
                       name="email"
                       value={form.email}
                       onChange={handleChange}
                       placeholder={t('contact.ph.email')}
-                      className="form-input bg-transparent border-0 border-b-2 border-gray-200 dark:border-white/10 focus:border-primary px-0 py-2.5 text-sm text-[#2e2b2b] dark:text-[#d0d0d0] placeholder-gray-300 dark:placeholder-[#444] outline-none w-full transition-colors duration-300"
+                      className="form-input bg-transparent border-0 border-b-2 border-gray-200 dark:border-white/10 focus:border-primary px-0 py-2.5 text-[15px] font-medium text-[#1e1e1e] dark:text-[#e0e0e0] placeholder-gray-400 dark:placeholder-[#666] outline-none w-full transition-colors duration-300"
                     />
                   </div>
                 </div>
 
                 {/* Subject */}
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider">{t('contact.subject')}</label>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[13px] font-medium text-[#777] dark:text-[#999]">{t('contact.subject')}</label>
                   <input
                     type="text"
                     name="subject"
                     value={form.subject}
                     onChange={handleChange}
                     placeholder={t('contact.ph.sub')}
-                    className="form-input bg-transparent border-0 border-b-2 border-gray-200 dark:border-white/10 focus:border-primary px-0 py-2.5 text-sm text-[#2e2b2b] dark:text-[#d0d0d0] placeholder-gray-300 dark:placeholder-[#444] outline-none w-full transition-colors duration-300"
+                    className="form-input bg-transparent border-0 border-b-2 border-gray-200 dark:border-white/10 focus:border-primary px-0 py-2.5 text-[15px] font-medium text-[#1e1e1e] dark:text-[#e0e0e0] placeholder-gray-400 dark:placeholder-[#666] outline-none w-full transition-colors duration-300"
                   />
                 </div>
 
                 {/* Message */}
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs text-[#8a7d7d] dark:text-[#666] uppercase tracking-wider">{t('contact.message')}</label>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[13px] font-medium text-[#777] dark:text-[#999]">{t('contact.message')}</label>
                   <textarea
                     name="message"
                     value={form.message}
                     onChange={handleChange}
                     placeholder={t('contact.ph.msg')}
                     rows={5}
-                    className="form-input bg-transparent border-0 border-b-2 border-gray-200 dark:border-white/10 focus:border-primary px-0 py-2.5 text-sm text-[#2e2b2b] dark:text-[#d0d0d0] placeholder-gray-300 dark:placeholder-[#444] outline-none w-full resize-none transition-colors duration-300"
+                    className="form-input bg-transparent border-0 border-b-2 border-gray-200 dark:border-white/10 focus:border-primary px-0 py-2.5 text-[15px] font-medium text-[#1e1e1e] dark:text-[#e0e0e0] placeholder-gray-400 dark:placeholder-[#666] outline-none w-full resize-none transition-colors duration-300"
                   />
                 </div>
 
@@ -207,7 +247,7 @@ export default function ContactSection() {
                   {status === 'idle' && (
                     <>
                       {t('contact.send')}
-                      <HiPaperAirplane className="text-lg rotate-90" />
+                      <HiPaperAirplane className={`text-lg ${lang === 'ar' ? '-scale-x-100' : ''}`} />
                     </>
                   )}
                   {status === 'sending' && (
@@ -217,6 +257,7 @@ export default function ContactSection() {
                     </>
                   )}
                   {status === 'sent' && <>{t('contact.sent')}</>}
+                  {status === 'error' && <>{lang === 'ar' ? 'فشل الإرسال' : 'Error Sending'}</>}
                 </button>
               </div>
             </div>
