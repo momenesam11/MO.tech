@@ -59,21 +59,18 @@ const REVIEWS = [
 
 export default function TestimonialsSection() {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.15 })
-  const { lang } = useI18n()
+  const { lang, t } = useI18n()
   const scrollContainer = useRef<HTMLDivElement>(null)
 
   const scroll = (direction: 'prev' | 'next') => {
     if (scrollContainer.current) {
-      const scrollAmount = 380
-      const isRtl = lang === 'ar'
-      
-      let actualDirection = direction
-      if (isRtl) {
-        actualDirection = direction === 'prev' ? 'next' : 'prev'
-      }
+      const container = scrollContainer.current
+      const cardWidth = container.querySelector('div[data-card]')?.clientWidth || 380
+      const gap = 24 // gap-6 = 24px
+      const scrollAmount = cardWidth + gap
 
-      scrollContainer.current.scrollBy({
-        left: actualDirection === 'prev' ? -scrollAmount : scrollAmount,
+      container.scrollBy({
+        left: direction === 'prev' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
       })
     }
@@ -82,7 +79,7 @@ export default function TestimonialsSection() {
   return (
     <section id="testimonials" className="py-20 bg-white dark:bg-[#0f0f0f] transition-colors duration-300 border-t border-[#f3eeee] dark:border-white/5">
       <div ref={ref} className="max-w-7xl mx-auto px-10 md:px-20">
-        
+
         {/* Header */}
         <div
           className={`flex flex-col md:flex-row items-center justify-between gap-6 mb-14 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
@@ -91,11 +88,11 @@ export default function TestimonialsSection() {
             <span className="text-primary text-sm font-bold uppercase tracking-[0.25em] bg-primary/10 px-3 py-1.5 rounded-full">
               {lang === 'ar' ? 'آراء العملاء' : 'Testimonials'}
             </span>
-            <div className="flex items-baseline gap-1.5 mt-2">
+            <div className="relative inline-block mt-2">
               <h2 className="text-2xl md:text-3xl font-bold text-[#1e1e1e] dark:text-[#f0f0f0] text-center md:text-start" style={{ fontFamily: 'Cairo' }}>
                 {lang === 'ar' ? 'ماذا يقولون عني؟' : 'What clients say?'}
               </h2>
-              <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+              <div className={`absolute bottom-1 w-2.5 h-2.5 rounded-full bg-primary ${lang === 'ar' ? 'left-[-14px]' : 'right-[-14px]'}`} />
             </div>
           </div>
 
@@ -105,29 +102,31 @@ export default function TestimonialsSection() {
               onClick={() => scroll('prev')}
               className="w-12 h-12 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
             >
-              <HiChevronLeft className={`text-2xl ${lang === 'ar' ? 'rotate-180' : ''}`} />
+              <HiChevronLeft className="text-2xl" />
             </button>
             <button
               onClick={() => scroll('next')}
               className="w-12 h-12 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
             >
-              <HiChevronRight className={`text-2xl ${lang === 'ar' ? 'rotate-180' : ''}`} />
+              <HiChevronRight className="text-2xl" />
             </button>
           </div>
         </div>
 
         {/* Carousel */}
-        <div 
+        <div
           ref={scrollContainer}
+          dir="ltr"
           className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 -mx-4 px-4 md:mx-0 md:px-0"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {REVIEWS.map((review, i) => (
             <div
               key={i}
-              className={`min-w-[320px] md:min-w-[380px] max-w-[400px] snap-center bg-[#fafafa] dark:bg-[#1a1a1a] rounded-3xl p-8 border border-[#f3eeee] dark:border-white/8 hover:border-primary/30 dark:hover:border-primary/30 transition-all duration-500 hover:-translate-y-2 flex-shrink-0 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-              }`}
+              data-card
+              dir={lang === 'ar' ? 'rtl' : 'ltr'}
+              className={`w-[calc(100vw-56px)] sm:w-[calc(100vw-80px)] md:min-w-[380px] md:w-auto md:max-w-[400px] snap-center bg-[#fafafa] dark:bg-[#1a1a1a] rounded-3xl p-6 sm:p-8 border border-[#f3eeee] dark:border-white/8 hover:border-primary/30 dark:hover:border-primary/30 transition-all duration-500 hover:-translate-y-2 flex-shrink-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                }`}
               style={{ transitionDelay: `${i * 150}ms` }}
               data-hover="true"
             >
@@ -154,7 +153,7 @@ export default function TestimonialsSection() {
                 </div>
                 <div>
                   <p className="font-bold text-[#1e1e1e] dark:text-[#f0f0f0] text-[15px]">{review.name}</p>
-                  <p className="text-xs font-bold text-[#888]">{review.platform} Client</p>
+                  <p className="text-xs font-bold text-[#888]">{lang === 'ar' ? `عميل ${review.platform}` : `${review.platform} Client`}</p>
                 </div>
               </div>
             </div>

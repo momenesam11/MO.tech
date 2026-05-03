@@ -45,7 +45,7 @@ export default function NumbersSection() {
     { value: 32, key: 'numbers.projects', suffix: '+', icon: <HiOutlineCheckBadge /> },
     { value: 5, key: 'numbers.years', suffix: '+', icon: <HiOutlineBriefcase /> },
     { value: 60, key: 'numbers.clients', suffix: '+', icon: <HiOutlineFaceSmile /> },
-    { value: 100, key: 'numbers.rate', suffix: '%', icon: <HiOutlineHeart /> },
+    { value: 97, key: 'numbers.rate', suffix: '%', icon: <HiOutlineHeart /> },
   ]
 
   return (
@@ -120,7 +120,7 @@ export default function NumbersSection() {
 
               {/* Upwork */}
               <a
-                href="https://www.upwork.com/freelancers/~momenesam"
+                href="https://www.upwork.com/freelancers/~014da48df25e4e117b?mp_source=share"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-white/10 hover:bg-[#14a800] text-white border border-white/10 hover:border-[#14a800] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(20,168,0,0.4)]"

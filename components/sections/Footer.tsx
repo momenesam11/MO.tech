@@ -26,7 +26,7 @@ export default function Footer() {
               <img src="/logo-dark.png" alt="MO.tech" className="h-full w-auto object-contain block dark:hidden" />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-              {lang === 'ar' ? 'مصمم ومطور واجهات شغوف في القاهرة، أقدم تجارب رقمية مميزة.' : 'UI/UX Designer & Frontend Developer crafting beautiful digital experiences from Cairo, Egypt.'}
+              {lang === 'ar' ? 'مصمم ومطور واجهات من القاهرة، بحوّل أي فكرة لتجربة رقمية تفرح صاحبها.' : 'UI/UX Designer & Frontend Developer crafting beautiful digital experiences from Cairo, Egypt.'}
             </p>
             {/* Social */}
             <div className="flex gap-3 mt-1">
@@ -91,12 +91,6 @@ export default function Footer() {
                 <HiMapPin className="text-primary text-base" />
                 {lang === 'ar' ? 'القاهرة، مصر' : 'Cairo, Egypt'}
               </span>
-            </div>
-
-            {/* Availability badge */}
-            <div className="mt-2 inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 text-green-400 text-xs px-4 py-2 rounded-full w-fit">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              {lang === 'ar' ? 'متاح للعمل على مشاريع جديدة' : 'Available for new projects'}
             </div>
           </div>
         </div>

@@ -2,7 +2,8 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { useI18n } from '@/lib/i18n'
-import { FaWhatsapp, FaGithub, FaLinkedinIn, FaBehance } from 'react-icons/fa6'
+import { FaGithub, FaLinkedinIn, FaBehance } from 'react-icons/fa6'
+import { SiUpwork } from 'react-icons/si'
 
 const NAME = 'Momen Esam'
 
@@ -185,7 +186,6 @@ export default function HeroSection() {
                 className="btn-primary btn-pulse bg-primary text-white font-bold px-7 py-3.5 rounded-full flex items-center gap-2 text-sm"
                 data-hover="true"
               >
-                <FaWhatsapp className="text-lg" />
                 {t('hero.contact')}
               </a>
               <a
@@ -195,7 +195,6 @@ export default function HeroSection() {
                 className="border-2 border-primary text-primary font-bold px-7 py-3.5 rounded-full text-sm hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-2"
                 data-hover="true"
               >
-                <FaBehance className="text-lg" />
                 {t('hero.portfolio')}
               </a>
             </div>
@@ -207,8 +206,11 @@ export default function HeroSection() {
             >
               {[
                 { href: 'https://github.com/momenesam11', label: 'GitHub', icon: <FaGithub /> },
-                { href: 'https://www.behance.net/momenesam', label: 'Behance', icon: <FaBehance /> },
                 { href: 'https://www.linkedin.com/in/momenesam/', label: 'LinkedIn', icon: <FaLinkedinIn /> },
+                { href: 'https://www.behance.net/momenesam', label: 'Behance', icon: <FaBehance /> },
+                { href: 'https://www.upwork.com/freelancers/~014da48df25e4e117b?mp_source=share', label: 'Upwork', icon: <SiUpwork /> },
+                { href: 'https://mostaql.com/u/momenesam', label: 'Mostaql', icon: <img src="/mostaql.png" alt="Mostaql" className="w-5 h-5 object-contain" /> },
+                { href: 'https://khamsat.com/user/momenesam11', label: 'Khamsat', icon: <img src="/khamsat.png" alt="Khamsat" className="w-5 h-5 object-contain" /> },
               ].map(({ href, label, icon }) => (
                 <a
                   key={label}
@@ -227,13 +229,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="text-[15px] font-bold text-[#8a7d7d] dark:text-[#fff] uppercase tracking-[0.3em] animate-pulse">
-          {t('hero.scroll')}
-        </span>
-        <div className="w-px h-8 bg-gradient-to-b from-primary/60 to-transparent animate-bounce" />
-      </div>
     </section>
   )
 }

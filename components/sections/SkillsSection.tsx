@@ -107,7 +107,7 @@ function SkillCard({ name, brandColor, icon: Icon, delay, isVisible }: SkillCard
 
 export default function SkillsSection() {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.1 })
-  const { t } = useI18n()
+  const { t, lang } = useI18n()
 
   return (
     <section id="skills" className="py-24 bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
@@ -122,7 +122,7 @@ export default function SkillsSection() {
               <h2 className="text-[38px] font-bold text-[#1e1e1e] dark:text-[#f0f0f0]" style={{ fontFamily: 'Cairo' }}>
                 {t('skills.title')}
               </h2>
-              <div className="absolute top-[1.875rem] right-[-14px] w-2 h-2 rounded-full bg-primary" />
+              <div className={`absolute top-[1.875rem] w-2 h-2 rounded-full bg-primary ${lang === 'ar' ? 'left-[-14px]' : 'right-[-14px]'}`} />
             </div>
             <p className="mt-4 text-[#626262] dark:text-[#a0a0a0] text-base leading-relaxed">
               {t('skills.desc')}

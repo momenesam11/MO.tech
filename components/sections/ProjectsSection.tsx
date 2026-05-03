@@ -362,34 +362,21 @@ export default function ProjectsSection() {
           ))}
         </div>
 
-        {/* View all CTA / See More */}
-        <div className={`flex justify-center mt-10 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '500ms' }}>
-          {visibleCount < filtered.length ? (
+        {/* See More */}
+        {visibleCount < filtered.length && (
+          <div className={`flex justify-center mt-10 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '500ms' }}>
             <button
               onClick={() => setVisibleCount(prev => prev + 3)}
               className="border-2 border-primary text-primary font-bold px-8 py-3 rounded-full text-sm hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-2"
               data-hover="true"
             >
-              See More
+              {t('projects.seeMore')}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M6 9l6 6 6-6"/>
               </svg>
             </button>
-          ) : (
-            <a
-              href="https://www.behance.net/momenesam"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border-2 border-primary text-primary font-bold px-8 py-3 rounded-full text-sm hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-2"
-              data-hover="true"
-            >
-              {t('projects.viewAll')}
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </section>
   )

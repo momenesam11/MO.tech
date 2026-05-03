@@ -6,6 +6,9 @@ import { I18nProvider } from '@/lib/i18n'
 export const metadata: Metadata = {
   title: 'Momen Esam | UI/UX Designer & Frontend Developer',
   description: 'Portfolio of Momen Esam — UI/UX Designer and Frontend Developer based in Cairo, Egypt.',
+  icons: {
+    icon: '/logo-light.png',
+  },
 }
 
 export default function RootLayout({

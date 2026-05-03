@@ -60,6 +60,28 @@ body {
   transition: background 0.4s ease, color 0.4s ease;
 }
 
+/* Fix Arabic text truncation */
+[lang="ar"] * {
+  word-break: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: none;
+  hyphens: none;
+}
+
+[lang="ar"] p,
+[lang="ar"] span,
+[lang="ar"] h1,
+[lang="ar"] h2,
+[lang="ar"] h3,
+[lang="ar"] h4,
+[lang="ar"] button,
+[lang="ar"] a {
+  white-space: normal;
+  word-break: keep-all;
+  line-break: normal;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 5px;

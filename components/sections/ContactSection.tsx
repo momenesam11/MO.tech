@@ -52,7 +52,7 @@ export default function ContactSection() {
     {
       icon: <FaWhatsapp className="text-xl" />,
       label: t('contact.whatsapp'),
-      value: '+201021179969',
+      value: '\u200E+201021179969',
       href: 'https://wa.me/201021179969',
       color: '#25D366',
       bg: 'rgba(37,211,102,0.1)',
@@ -86,11 +86,11 @@ export default function ContactSection() {
           <span className="text-primary text-sm font-bold uppercase tracking-[0.25em] bg-primary/10 px-3 py-1.5 rounded-full mb-4">
             {t('contact.badge')}
           </span>
-          <div className="flex items-baseline gap-1.5 mb-3">
+          <div className="relative inline-block mb-3">
             <h2 className="text-2xl md:text-3xl font-bold text-[#1e1e1e] dark:text-[#f0f0f0] text-center" style={{ fontFamily: 'Cairo' }}>
               {t('contact.title')}
             </h2>
-            <div className="w-2.5 h-2.5 rounded-full bg-primary" />
+            <div className={`absolute bottom-1 w-2.5 h-2.5 rounded-full bg-primary ${lang === 'ar' ? 'left-[-14px]' : 'right-[-14px]'}`} />
           </div>
           <p className="text-[#6a6a6a] dark:text-[#a0a0a0] text-center max-w-md text-base font-medium">
             {t('contact.subtitle')}
@@ -121,7 +121,7 @@ export default function ContactSection() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-[12px] md:text-[13px] font-medium text-[#777] dark:text-[#999] mb-0.5 md:mb-1">{item.label}</p>
-                  <p className="text-[14px] md:text-[15px] font-semibold text-[#2e2b2b] dark:text-[#d0d0d0] break-all sm:break-normal line-clamp-1 hover:line-clamp-none">{item.value}</p>
+                  <p className="text-[14px] md:text-[15px] font-semibold text-[#2e2b2b] dark:text-[#d0d0d0] break-all sm:break-normal line-clamp-1 hover:line-clamp-none" dir="ltr" style={{ textAlign: lang === 'ar' ? 'right' : 'left' }}>{item.value}</p>
                 </div>
               </a>
             ))}
@@ -136,7 +136,7 @@ export default function ContactSection() {
                 {[
                   { href: 'https://khamsat.com/user/momenesam11', label: 'Khamsat', icon: <img src="/khamsat.png" alt="Khamsat" className="w-5 h-5 object-contain" /> },
                   { href: 'https://mostaql.com/u/momenesam11', label: 'Mostaql', icon: <img src="/mostaql.png" alt="Mostaql" className="w-5 h-5 object-contain" /> },
-                  { href: 'https://www.upwork.com/freelancers/~014da48df25e4e117b', label: 'Upwork', icon: <SiUpwork className="text-[22px] text-[#14a800]" /> },
+                  { href: 'https://www.upwork.com/freelancers/~014da48df25e4e117b?mp_source=share', label: 'Upwork', icon: <SiUpwork className="text-[22px] text-[#14a800]" /> },
                 ].map(freelance => (
                   <a
                     key={freelance.label}
