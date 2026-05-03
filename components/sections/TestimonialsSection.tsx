@@ -99,16 +99,18 @@ export default function TestimonialsSection() {
           {/* Navigation Arrows */}
           <div className="flex items-center gap-3">
             <button
-              onClick={() => scroll('prev')}
+              onClick={() => scroll(lang === 'ar' ? 'next' : 'prev')}
+              aria-label={lang === 'ar' ? 'التالي' : 'Previous'}
               className="w-12 h-12 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
             >
-              <HiChevronLeft className="text-2xl" />
+              {lang === 'ar' ? <HiChevronRight className="text-2xl" /> : <HiChevronLeft className="text-2xl" />}
             </button>
             <button
-              onClick={() => scroll('next')}
+              onClick={() => scroll(lang === 'ar' ? 'prev' : 'next')}
+              aria-label={lang === 'ar' ? 'السابق' : 'Next'}
               className="w-12 h-12 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
             >
-              <HiChevronRight className="text-2xl" />
+              {lang === 'ar' ? <HiChevronLeft className="text-2xl" /> : <HiChevronRight className="text-2xl" />}
             </button>
           </div>
         </div>
@@ -116,16 +118,15 @@ export default function TestimonialsSection() {
         {/* Carousel */}
         <div
           ref={scrollContainer}
-          dir="ltr"
-          className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 -mx-4 px-4 md:mx-0 md:px-0"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          dir={lang === 'ar' ? 'rtl' : 'ltr'}
+          className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 -mx-10 px-10 md:mx-0 md:px-0 hide-scrollbar"
         >
           {REVIEWS.map((review, i) => (
             <div
               key={i}
               data-card
               dir={lang === 'ar' ? 'rtl' : 'ltr'}
-              className={`w-[calc(100vw-56px)] sm:w-[calc(100vw-80px)] md:min-w-[380px] md:w-auto md:max-w-[400px] snap-center bg-[#fafafa] dark:bg-[#1a1a1a] rounded-3xl p-6 sm:p-8 border border-[#f3eeee] dark:border-white/8 hover:border-primary/30 dark:hover:border-primary/30 transition-all duration-500 hover:-translate-y-2 flex-shrink-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+              className={`w-[calc(100vw-80px)] sm:w-[380px] md:min-w-[400px] md:w-auto md:max-w-[420px] snap-center bg-[#fafafa] dark:bg-[#1a1a1a] rounded-3xl p-6 sm:p-8 border border-[#f3eeee] dark:border-white/8 hover:border-primary/30 dark:hover:border-primary/30 transition-all duration-500 flex-shrink-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
               style={{ transitionDelay: `${i * 150}ms` }}
               data-hover="true"
@@ -143,7 +144,7 @@ export default function TestimonialsSection() {
                 </div>
               </div>
 
-              <p className="text-[#6a6a6a] dark:text-[#a0a0a0] text-[15px] font-medium leading-relaxed mb-8 min-h-[100px]">
+              <p className="text-[#6a6a6a] dark:text-[#a0a0a0] text-[15px] font-medium leading-relaxed mb-8 min-h-[120px]">
                 "{lang === 'ar' ? review.textAr : review.textEn}"
               </p>
 

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Momen Esam | UI/UX Designer & Frontend Developer',
   description: 'Portfolio of Momen Esam — UI/UX Designer and Frontend Developer based in Cairo, Egypt.',
   icons: {
-    icon: '/logo-light.png',
+    icon: '/fav-icon.png',
   },
 }
 
